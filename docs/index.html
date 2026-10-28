@@ -2,35 +2,49 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>GT Neo 3 Unofficial Unlock</title>
+<title>GT Neo 3 Unofficial Unlock • Matrix Edition</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#000000">
 
+<!-- GOOGLE FONTS -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 /* ==========================================================================
-   TRUE AMOLED DESIGN SYSTEM
-   Pure Pitch Black (#000000) • Vibrant Signal Green • Crisp Glass Surfaces
+   THE MATRIX CYBER-TERMINAL SYSTEM
+   Digital Rain • Phosphor Green • Pure Black AMOLED • High Legibility
    ========================================================================== */
 :root {
-  --void: #000000;
-  --void-surface: #06090e;
-  --void-card: #090e15;
-  --signal: #00ff9c;
-  --signal-dim: rgba(0, 255, 156, 0.35);
-  --signal-glow: rgba(0, 255, 156, 0.15);
-  --circuit-blue: #00d4ff;
-  --nothing-red: #ff2e4d;
-  --ink: #f0f6fc;
-  --muted: #8fa8c3;
-  --glass: rgba(8, 13, 20, 0.85);
-  --glass-border: rgba(0, 255, 156, 0.22);
-  --font-display: 'Orbitron', sans-serif;
-  --font-body: 'Inter', sans-serif;
+  --matrix-black: #000000;
+  --matrix-void: #020503;
+  --matrix-card: rgba(3, 10, 5, 0.88);
+  --matrix-card-hover: rgba(5, 16, 8, 0.95);
+  
+  /* Phosphor Matrix Chromatics */
+  --matrix-green: #00ff66;
+  --matrix-green-bright: #33ff85;
+  --matrix-green-dim: rgba(0, 255, 102, 0.15);
+  --matrix-green-glow: rgba(0, 255, 102, 0.45);
+  --matrix-border: rgba(0, 255, 102, 0.28);
+  --matrix-cyan: #00e5ff;
+  --matrix-red: #ff1a4b;
+  --matrix-red-glow: rgba(255, 26, 75, 0.4);
+
+  /* Typography Colors */
+  --text-main: #e6ffe6;
+  --text-muted: #8fa895;
+  --text-dim: #4d6653;
+
+  /* Fonts */
+  --font-display: 'Space Grotesk', -apple-system, sans-serif;
+  --font-body: 'Plus Jakarta Sans', -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
+
+  /* Smooth Easing */
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 *, *::before, *::after {
@@ -41,9 +55,9 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 90px;
-  background-color: var(--void);
-  color: var(--ink);
+  scroll-padding-top: 86px;
+  background-color: var(--matrix-black);
+  color: var(--text-main);
   font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.65;
@@ -51,77 +65,56 @@ html {
 }
 
 body {
-  background-color: var(--void);
+  background-color: var(--matrix-black);
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
 }
 
 ::selection {
-  background: rgba(0, 255, 156, 0.35);
-  color: #fff;
+  background: var(--matrix-green);
+  color: #000;
 }
 
 /* ==========================================================================
-   AMOLED BACKGROUND CIRCUIT & ORBS
+   MATRIX DIGITAL RAIN CANVAS & SCANLINE OVERLAY
    ========================================================================== */
-#circuit {
+#matrix-rain {
   position: fixed;
   inset: 0;
   width: 100%;
   height: 100%;
   z-index: 0;
   pointer-events: none;
+  opacity: 0.28;
 }
 
-.orb {
-  position: fixed;
-  border-radius: 50%;
-  filter: blur(120px);
-  opacity: 0.25;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.orb-a {
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, var(--signal), transparent 70%);
-  top: -160px;
-  left: -160px;
-  animation: floatA 22s ease-in-out infinite alternate;
-}
-
-.orb-b {
-  width: 650px;
-  height: 650px;
-  background: radial-gradient(circle, var(--circuit-blue), transparent 70%);
-  bottom: -180px;
-  right: -180px;
-  animation: floatB 26s ease-in-out infinite alternate;
-}
-
-@keyframes floatA {
-  from { transform: translate(0, 0) scale(1); }
-  to   { transform: translate(90px, 60px) scale(1.15); }
-}
-
-@keyframes floatB {
-  from { transform: translate(0, 0) scale(1); }
-  to   { transform: translate(-70px, -80px) scale(1.1); }
-}
-
-.dot-grid {
+/* Subtle CRT Scanlines */
+.scanline-overlay {
   position: fixed;
   inset: 0;
-  z-index: 0;
-  background-image: radial-gradient(rgba(230, 241, 255, 0.06) 1px, transparent 1px);
-  background-size: 26px 26px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.3));
+  background-size: 100% 4px;
   pointer-events: none;
+  z-index: 1;
+  opacity: 0.6;
+}
+
+.ambient-green-glow {
+  position: fixed;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(0, 255, 102, 0.12) 0%, transparent 70%);
+  filter: blur(140px);
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* ==========================================================================
-   STICKY NAV
+   STICKY MATRIX TERMINAL NAVIGATION
    ========================================================================== */
 .site-nav {
   position: fixed;
@@ -129,11 +122,11 @@ body {
   left: 0;
   right: 0;
   z-index: 500;
-  background: rgba(0, 0, 0, 0.88);
+  background: rgba(1, 6, 2, 0.88);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(0, 255, 156, 0.18);
-  transition: border-color 0.3s;
+  border-bottom: 1px solid var(--matrix-border);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 255, 102, 0.08);
 }
 
 .nav-inner {
@@ -146,13 +139,21 @@ body {
 }
 
 .nav-brand {
-  font-family: var(--font-display);
+  font-family: var(--font-mono);
   font-size: 16px;
   font-weight: 700;
-  color: var(--signal);
-  letter-spacing: 1px;
+  color: var(--matrix-green);
+  letter-spacing: 1.5px;
   text-decoration: none;
-  text-shadow: 0 0 10px rgba(0, 255, 156, 0.4);
+  text-shadow: 0 0 10px var(--matrix-green);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brand-matrix-prefix {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 14px;
 }
 
 .blink {
@@ -165,7 +166,7 @@ body {
 
 .nav-links {
   display: flex;
-  gap: 26px;
+  gap: 24px;
   overflow-x: auto;
   scrollbar-width: none;
 }
@@ -173,7 +174,7 @@ body {
 .nav-links::-webkit-scrollbar { display: none; }
 
 .nav-links a {
-  color: var(--muted);
+  color: var(--text-muted);
   text-decoration: none;
   font-family: var(--font-mono);
   font-size: 12px;
@@ -192,14 +193,15 @@ body {
   bottom: 0;
   width: 0%;
   height: 2px;
-  background: var(--signal);
-  box-shadow: 0 0 8px var(--signal);
+  background: var(--matrix-green);
+  box-shadow: 0 0 8px var(--matrix-green);
   transition: width 0.3s;
 }
 
 .nav-links a:hover,
 .nav-links a.active {
-  color: var(--signal);
+  color: var(--matrix-green);
+  text-shadow: 0 0 8px var(--matrix-green);
 }
 
 .nav-links a.active::after {
@@ -207,21 +209,21 @@ body {
 }
 
 /* ==========================================================================
-   MAIN LAYOUT & CONTAINERS (ALWAYS 100% VISIBLE)
+   MAIN CONTAINER & TYPOGRAPHY (100% VISIBLE BY DEFAULT)
    ========================================================================== */
 .container {
   max-width: 1000px;
   margin: auto;
   padding: 30px 20px 140px;
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 h1, h2, h3 {
   font-family: var(--font-display);
-  color: var(--ink);
+  color: var(--text-main);
   margin: 0 0 14px;
-  letter-spacing: 0.02em;
+  letter-spacing: -0.01em;
 }
 
 p {
@@ -232,17 +234,17 @@ p {
 .eyebrow {
   font-family: var(--font-mono);
   font-size: 11px;
-  letter-spacing: 2.5px;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  color: var(--circuit-blue);
-  border: 1px solid rgba(0, 212, 255, 0.4);
-  background: rgba(0, 212, 255, 0.08);
+  color: var(--matrix-green);
+  border: 1px solid var(--matrix-border);
+  background: rgba(0, 255, 102, 0.08);
   padding: 5px 14px 5px 26px;
-  border-radius: 20px;
+  border-radius: 9999px;
   position: relative;
   display: inline-block;
   margin-bottom: 16px;
-  box-shadow: 0 0 14px rgba(0, 212, 255, 0.15);
+  box-shadow: 0 0 16px rgba(0, 255, 102, 0.15);
 }
 
 .eyebrow::before {
@@ -254,26 +256,26 @@ p {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--circuit-blue);
-  box-shadow: 0 0 8px var(--circuit-blue);
+  background: var(--matrix-green);
+  box-shadow: 0 0 8px var(--matrix-green);
   animation: pulseDot 2s infinite;
 }
 
 @keyframes pulseDot {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(0.8); }
 }
 
 .eyebrow-danger {
-  color: var(--nothing-red);
-  border-color: rgba(255, 46, 77, 0.45);
-  background: rgba(255, 46, 77, 0.08);
-  box-shadow: 0 0 14px rgba(255, 46, 77, 0.2);
+  color: var(--matrix-red);
+  border-color: rgba(255, 26, 75, 0.45);
+  background: rgba(255, 26, 75, 0.08);
+  box-shadow: 0 0 16px rgba(255, 26, 75, 0.2);
 }
 
 .eyebrow-danger::before {
-  background: var(--nothing-red);
-  box-shadow: 0 0 8px var(--nothing-red);
+  background: var(--matrix-red);
+  box-shadow: 0 0 8px var(--matrix-red);
 }
 
 .section-eyebrow-wrap {
@@ -282,7 +284,7 @@ p {
 }
 
 /* ==========================================================================
-   HERO SECTION
+   HERO: MATRIX TERMINAL OPERATOR
    ========================================================================== */
 .hero {
   position: relative;
@@ -291,53 +293,56 @@ p {
   align-items: center;
   justify-content: center;
   padding: 110px 20px 60px;
-  z-index: 1;
+  z-index: 2;
 }
 
 .hero-inner {
-  max-width: 720px;
+  max-width: 740px;
   width: 100%;
   text-align: center;
   padding: 60px 48px;
-  background: var(--glass);
-  border: 1px solid var(--glass-border);
-  border-radius: 26px;
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  box-shadow: 0 0 70px rgba(0, 255, 156, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  background: var(--matrix-card);
+  border: 1px solid var(--matrix-border);
+  border-radius: 24px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 0 60px rgba(0, 255, 102, 0.12), inset 0 1px 0 rgba(0, 255, 102, 0.2);
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .hero-inner:hover {
-  box-shadow: 0 0 85px rgba(0, 255, 156, 0.2);
+  box-shadow: 0 0 80px rgba(0, 255, 102, 0.22);
 }
 
 h1 {
-  font-size: clamp(28px, 5vw, 44px);
-  line-height: 1.2;
-  color: var(--signal);
-  text-shadow: 0 0 12px rgba(0, 255, 156, 0.6), 0 0 35px rgba(0, 255, 156, 0.3);
+  font-size: clamp(28px, 5vw, 46px);
+  font-weight: 800;
+  line-height: 1.15;
+  color: #fff;
+  text-transform: uppercase;
+  text-shadow: 0 0 15px rgba(0, 255, 102, 0.6), 0 0 40px rgba(0, 255, 102, 0.3);
 }
 
 .subtitle {
-  color: var(--muted);
-  margin-top: 10px;
+  color: var(--text-muted);
+  margin-top: 12px;
   font-family: var(--font-mono);
   font-size: 14px;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
 }
 
-/* Download Card */
+/* Download Module Card */
 .download-card {
   margin-top: 32px;
   padding: 24px;
-  border: 1px solid var(--glass-border);
+  border: 1px solid var(--matrix-border);
   border-radius: 18px;
-  background: rgba(0, 255, 156, 0.04);
+  background: rgba(0, 255, 102, 0.04);
   display: flex;
   flex-direction: column;
   gap: 18px;
   align-items: center;
+  box-shadow: inset 0 0 20px rgba(0, 255, 102, 0.04);
 }
 
 .download-card-meta {
@@ -357,15 +362,16 @@ h1 {
 
 .dc-label {
   font-family: var(--font-display);
-  font-size: 14px;
+  font-size: 15px;
+  font-weight: 700;
   letter-spacing: 1px;
-  color: var(--ink);
+  color: #fff;
 }
 
 .dc-sub {
   font-family: var(--font-mono);
-  font-size: 10.5px;
-  color: var(--muted);
+  font-size: 11px;
+  color: var(--text-muted);
   letter-spacing: 1.5px;
   text-transform: uppercase;
 }
@@ -376,14 +382,16 @@ h1 {
   position: relative;
   overflow: hidden;
   padding: 17px 40px;
-  font-size: 17px;
+  font-size: 16px;
   font-family: var(--font-display);
-  font-weight: 700;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
   color: #000;
-  background: var(--signal);
+  background: var(--matrix-green);
   border-radius: 12px;
   text-decoration: none;
-  box-shadow: 0 0 30px var(--signal);
+  box-shadow: 0 0 30px var(--matrix-green);
   transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
 }
 
@@ -394,14 +402,14 @@ h1 {
   left: -60%;
   width: 50%;
   height: 100%;
-  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.65), transparent);
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.7), transparent);
   transform: skewX(-20deg);
   transition: left 0.6s ease;
 }
 
 .download:hover {
-  background: #00ffa3;
-  box-shadow: 0 0 45px var(--signal);
+  background: var(--matrix-green-bright);
+  box-shadow: 0 0 50px var(--matrix-green);
   transform: scale(1.02);
 }
 
@@ -416,7 +424,7 @@ h1 {
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  color: var(--muted);
+  color: var(--text-muted);
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 3px;
@@ -425,7 +433,7 @@ h1 {
 .scroll-cue-line {
   width: 2px;
   height: 36px;
-  background: linear-gradient(var(--signal), transparent);
+  background: linear-gradient(var(--matrix-green), transparent);
   animation: scrollPulse 1.8s ease-in-out infinite;
 }
 
@@ -435,7 +443,7 @@ h1 {
 }
 
 /* ==========================================================================
-   CARDS & SECTIONS (VISIBLE BY DEFAULT)
+   CARDS & SECTIONS (ALWAYS 100% VISIBLE)
    ========================================================================== */
 section {
   padding: 45px 0;
@@ -443,26 +451,26 @@ section {
 }
 
 .card {
-  background: var(--glass);
-  border: 1px solid var(--glass-border);
+  background: var(--matrix-card);
+  border: 1px solid var(--matrix-border);
   border-radius: 20px;
   padding: 34px;
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(0, 255, 156, 0.06);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.9), 0 0 25px rgba(0, 255, 102, 0.05);
   transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
-  opacity: 1 !important; /* GUARANTEES 100% VISIBILITY */
+  opacity: 1 !important; /* GUARANTEES 100% IMMEDIATE VISIBILITY */
 }
 
 .card:hover {
   transform: translateY(-3px);
-  border-color: rgba(0, 255, 156, 0.45);
-  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.9), 0 0 35px rgba(0, 255, 156, 0.15);
+  border-color: rgba(0, 255, 102, 0.45);
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.95), 0 0 35px rgba(0, 255, 102, 0.15);
 }
 
 .req {
-  background: rgba(0, 255, 156, 0.08);
-  border-left: 4px solid var(--signal);
+  background: rgba(0, 255, 102, 0.07);
+  border-left: 4px solid var(--matrix-green);
   padding: 14px 18px;
   margin: 12px 0;
   border-radius: 0 10px 10px 0;
@@ -472,8 +480,8 @@ section {
 }
 
 .warning {
-  background: rgba(255, 46, 77, 0.08);
-  border-left: 4px solid var(--nothing-red);
+  background: rgba(255, 26, 75, 0.08);
+  border-left: 4px solid var(--matrix-red);
   padding: 14px 18px;
   margin: 14px 0;
   border-radius: 0 10px 10px 0;
@@ -488,28 +496,28 @@ section {
 }
 
 .danger-card {
-  border-color: rgba(255, 46, 77, 0.35);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 46, 77, 0.1);
+  border-color: rgba(255, 26, 75, 0.4);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.9), 0 0 30px rgba(255, 26, 75, 0.12);
 }
 
 .danger-card:hover {
-  border-color: var(--nothing-red);
-  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.9), 0 0 45px rgba(255, 46, 77, 0.25);
+  border-color: var(--matrix-red);
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.95), 0 0 45px var(--matrix-red-glow);
 }
 
 a.inline-link {
-  color: var(--signal);
+  color: var(--matrix-green);
   font-weight: 600;
   text-decoration: none;
-  border-bottom: 1px dashed rgba(0, 255, 156, 0.45);
+  border-bottom: 1px dashed rgba(0, 255, 102, 0.45);
   padding-bottom: 2px;
   transition: all 0.2s;
 }
 
 a.inline-link:hover {
   color: #fff;
-  border-bottom-color: var(--signal);
-  text-shadow: 0 0 10px var(--signal);
+  border-bottom-color: var(--matrix-green);
+  text-shadow: 0 0 10px var(--matrix-green);
 }
 
 /* ==========================================================================
@@ -535,23 +543,23 @@ a.inline-link:hover {
 }
 
 .slot-ok {
-  background: rgba(0, 255, 156, 0.05);
-  border-color: var(--signal);
-  box-shadow: 0 0 20px rgba(0, 255, 156, 0.06);
+  background: rgba(0, 255, 102, 0.05);
+  border-color: var(--matrix-green);
+  box-shadow: 0 0 20px rgba(0, 255, 102, 0.08);
 }
 
 .slot-ok:hover {
-  box-shadow: 0 0 30px rgba(0, 255, 156, 0.15);
+  box-shadow: 0 0 30px rgba(0, 255, 102, 0.2);
 }
 
 .slot-bad {
-  background: rgba(255, 46, 77, 0.05);
-  border-color: var(--nothing-red);
-  box-shadow: 0 0 20px rgba(255, 46, 77, 0.06);
+  background: rgba(255, 26, 75, 0.05);
+  border-color: var(--matrix-red);
+  box-shadow: 0 0 20px rgba(255, 26, 75, 0.08);
 }
 
 .slot-bad:hover {
-  box-shadow: 0 0 30px rgba(255, 46, 77, 0.15);
+  box-shadow: 0 0 30px var(--matrix-red-glow);
 }
 
 .slot-box h3 {
@@ -560,13 +568,13 @@ a.inline-link:hover {
 }
 
 /* ==========================================================================
-   IMAGES & LIGHTBOX TRIGGER
+   IMAGES & LIGHTBOX
    ========================================================================== */
 img {
   width: 100%;
   margin-top: 15px;
   border-radius: 12px;
-  border: 1px solid var(--glass-border);
+  border: 1px solid var(--matrix-border);
   display: block;
   cursor: pointer;
   transition: transform 0.3s, filter 0.3s;
@@ -574,7 +582,7 @@ img {
 
 img:hover {
   transform: scale(1.02);
-  filter: brightness(1.06);
+  filter: brightness(1.08);
 }
 
 /* ==========================================================================
@@ -585,27 +593,27 @@ img:hover {
   align-items: center;
   gap: 8px;
   background: #000;
-  border: 1px solid rgba(0, 255, 156, 0.35);
+  border: 1px solid rgba(0, 255, 102, 0.35);
   padding: 4px 10px;
   border-radius: 6px;
   font-family: var(--font-mono);
   font-size: 13px;
-  color: var(--signal);
+  color: var(--matrix-green);
   cursor: pointer;
   user-select: all;
   transition: all 0.15s;
 }
 
 .cmd-chip:hover {
-  background: rgba(0, 255, 156, 0.15);
-  border-color: var(--signal);
-  box-shadow: 0 0 10px rgba(0, 255, 156, 0.3);
+  background: rgba(0, 255, 102, 0.15);
+  border-color: var(--matrix-green);
+  box-shadow: 0 0 12px rgba(0, 255, 102, 0.35);
 }
 
 .cmd-chip-badge {
   font-size: 9px;
   text-transform: uppercase;
-  background: rgba(0, 255, 156, 0.2);
+  background: rgba(0, 255, 102, 0.2);
   padding: 1px 5px;
   border-radius: 3px;
 }
@@ -613,24 +621,24 @@ img:hover {
 .terminal {
   border-radius: 12px;
   overflow: hidden;
-  border: 1px solid rgba(0, 255, 156, 0.28);
+  border: 1px solid rgba(0, 255, 102, 0.3);
   margin-top: 16px;
   background: #000000;
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.9);
 }
 
 .terminal-bar {
   display: flex;
   gap: 6px;
   padding: 10px 14px;
-  background: rgba(255, 255, 255, 0.03);
-  border-bottom: 1px solid rgba(0, 255, 156, 0.15);
+  background: rgba(0, 255, 102, 0.05);
+  border-bottom: 1px solid rgba(0, 255, 102, 0.18);
 }
 
 .t-dot { width: 9px; height: 9px; border-radius: 50%; }
-.t-red { background: #ff5f56; }
-.t-yellow { background: #ffbd2e; }
-.t-green { background: #27c93f; }
+.t-red { background: #ff1a4b; box-shadow: 0 0 6px #ff1a4b; }
+.t-yellow { background: #ffbd2e; box-shadow: 0 0 6px #ffbd2e; }
+.t-green { background: #00ff66; box-shadow: 0 0 6px #00ff66; }
 
 .terminal-body { padding: 16px 18px; }
 
@@ -639,10 +647,10 @@ img:hover {
   padding: 0;
   background: none;
   border: none;
-  color: var(--signal);
+  color: var(--matrix-green);
   font-family: var(--font-mono);
   font-size: 14px;
-  text-shadow: 0 0 8px rgba(0, 255, 156, 0.4);
+  text-shadow: 0 0 8px rgba(0, 255, 102, 0.5);
 }
 
 .terminal-body pre::after {
@@ -668,13 +676,13 @@ img:hover {
 }
 
 .timeline-track {
-  background: rgba(0, 255, 156, 0.15);
+  background: rgba(0, 255, 102, 0.15);
 }
 
 .timeline-fill {
   height: 0;
-  background: linear-gradient(180deg, var(--signal), var(--circuit-blue));
-  box-shadow: 0 0 14px var(--signal);
+  background: linear-gradient(180deg, var(--matrix-green), var(--matrix-cyan));
+  box-shadow: 0 0 14px var(--matrix-green);
   transition: height 0.4s ease-out;
 }
 
@@ -693,25 +701,25 @@ img:hover {
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: #020406;
-  border: 2px solid rgba(0, 255, 156, 0.3);
+  background: #010603;
+  border: 2px solid rgba(0, 255, 102, 0.35);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-display);
+  font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 15px;
-  color: var(--muted);
+  font-size: 16px;
+  color: var(--text-muted);
   z-index: 2;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
   transition: all 0.3s ease;
 }
 
 .timeline-item.active .timeline-node {
-  border-color: var(--signal);
-  color: var(--signal);
-  background: rgba(0, 255, 156, 0.1);
-  box-shadow: 0 0 25px var(--signal-dim);
+  border-color: var(--matrix-green);
+  color: var(--matrix-green);
+  background: rgba(0, 255, 102, 0.12);
+  box-shadow: 0 0 25px var(--matrix-green-glow);
 }
 
 .timeline-card {
@@ -725,7 +733,7 @@ img:hover {
   line-height: 1.9;
 }
 
-.timeline-card li::marker { color: var(--signal); }
+.timeline-card li::marker { color: var(--matrix-green); }
 
 /* ==========================================================================
    FOOTER
@@ -733,13 +741,13 @@ img:hover {
 footer {
   text-align: center;
   padding: 50px 20px;
-  color: var(--muted);
+  color: var(--text-muted);
   font-family: var(--font-mono);
   font-size: 13px;
-  border-top: 1px solid rgba(0, 255, 156, 0.15);
+  border-top: 1px solid var(--matrix-border);
   margin-top: 40px;
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 footer p { margin: 6px 0; }
@@ -767,7 +775,7 @@ footer p { margin: 6px 0; }
 
 .bee-speech-bubble {
   max-width: 230px;
-  background: rgba(10, 15, 22, 0.95);
+  background: rgba(3, 12, 6, 0.95);
   border: 2px solid #FFC107;
   border-radius: 18px 18px 4px 18px;
   padding: 12px 16px;
@@ -835,15 +843,15 @@ footer p { margin: 6px 0; }
   bottom: 24px;
   left: 50%;
   transform: translateX(-50%) translateY(30px);
-  background: #060a10;
-  border: 1px solid var(--signal);
+  background: #020803;
+  border: 1px solid var(--matrix-green);
   color: #fff;
   padding: 12px 24px;
   border-radius: 9999px;
   font-family: var(--font-mono);
   font-size: 13px;
   font-weight: 700;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.9), 0 0 25px rgba(0, 255, 156, 0.4);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.9), 0 0 25px var(--matrix-green-glow);
   z-index: 9999999;
   display: flex;
   align-items: center;
@@ -895,8 +903,8 @@ footer p { margin: 6px 0; }
   max-width: 100%;
   max-height: 82vh;
   border-radius: 14px;
-  border: 1px solid var(--glass-border);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.95), 0 0 35px rgba(0, 255, 156, 0.2);
+  border: 1px solid var(--matrix-border);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.95), 0 0 35px rgba(0, 255, 102, 0.25);
   object-fit: contain;
 }
 
@@ -907,8 +915,8 @@ footer p { margin: 6px 0; }
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: #090e15;
-  border: 1px solid var(--glass-border);
+  background: #030a05;
+  border: 1px solid var(--matrix-border);
   color: #fff;
   font-size: 18px;
   cursor: pointer;
@@ -919,7 +927,7 @@ footer p { margin: 6px 0; }
 }
 
 .lightbox-close-btn:hover {
-  background: var(--nothing-red);
+  background: var(--matrix-red);
   transform: rotate(90deg);
 }
 
@@ -975,16 +983,17 @@ footer p { margin: 6px 0; }
 
 <body>
 
-<!-- ===== BACKGROUND LAYERS (PURE AMOLED) ===== -->
-<canvas id="circuit"></canvas>
-<div class="orb orb-a"></div>
-<div class="orb orb-b"></div>
-<div class="dot-grid"></div>
+<!-- ===== MATRIX DIGITAL RAIN CANVAS & SCANLINES ===== -->
+<canvas id="matrix-rain"></canvas>
+<div class="scanline-overlay"></div>
+<div class="ambient-green-glow"></div>
 
-<!-- ===== STICKY NAV ===== -->
+<!-- ===== STICKY MATRIX NAV ===== -->
 <nav class="site-nav">
   <div class="nav-inner">
-    <a href="#hero" class="nav-brand">GT Neo 3<span class="blink">_</span></a>
+    <a href="#hero" class="nav-brand">
+      <span class="brand-matrix-prefix">&gt;</span>GT Neo 3<span class="blink">_</span>
+    </a>
     <div class="nav-links">
       <a href="#requirements" data-section="requirements">Requirements</a>
       <a href="#slot-check" data-section="slot-check">Slot Check</a>
@@ -997,7 +1006,7 @@ footer p { margin: 6px 0; }
 
 <!-- ===== HERO ===== -->
 <header class="hero" id="hero">
-  <div class="hero-inner glass-panel">
+  <div class="hero-inner">
     <span class="eyebrow">MTK.ENG_PRELOADER_EXPLOIT</span>
     <h1>GT NEO 3 BOOTLOADER UNLOCK [UNOFFICIAL]</h1>
     <p class="subtitle">ENG Preloader Exploit • Fastboot Unlock</p>
@@ -1061,7 +1070,7 @@ footer p { margin: 6px 0; }
         </div>
         <div class="slot-box slot-bad">
           <h3>❌ SLOT B (Do NOT proceed)</h3>
-          <p style="color: var(--muted); margin-top: 8px;">Local install latest RUI 5 package and check active slot again</p>
+          <p style="color: var(--text-muted); margin-top: 8px;">Local install latest RUI 5 package and check active slot again</p>
         </div>
       </div>
 
@@ -1226,113 +1235,79 @@ footer p { margin: 6px 0; }
 
 <!-- ===== FLOATING TOAST ===== -->
 <div id="toast-notification" role="status" aria-live="polite">
-  <span style="color: var(--signal);">✓</span>
+  <span style="color: var(--matrix-green);">✓</span>
   <span id="toastMsg">COPIED TO CLIPBOARD</span>
 </div>
 
 <script>
-/* ===== ANIMATED CIRCUIT BACKGROUND ===== */
-const canvas = document.getElementById("circuit");
+/* ==========================================================================
+   MATRIX DIGITAL RAIN ENGINE (AUTHENTIC 60 FPS PHOSPHOR GREEN)
+   ========================================================================== */
+const canvas = document.getElementById("matrix-rain");
 const ctx = canvas.getContext("2d");
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-let w, h, traces = [], pulses = [];
+let w, h, cols, ypos;
+const chars = "0123456789ABCDEFｦｱｳｴｵｶｷｹｺｻｼｽｾｿﾀﾂﾃﾅﾆﾇﾈﾊﾋﾎﾏﾐﾑﾒﾓﾔﾕﾗﾘﾜX#$@&%*+=-";
 
 function resizeCanvas(){
   w = canvas.width = window.innerWidth;
   h = canvas.height = window.innerHeight;
-  buildTraces();
+  cols = Math.floor(w / 18) + 1;
+  ypos = Array(cols).fill(0).map(() => Math.floor(Math.random() * -50));
 }
 
-function buildTraces(){
-  traces = [];
-  const spacing = 140;
-  const cols = Math.ceil(w / spacing) + 1;
-  const rows = Math.ceil(h / spacing) + 1;
+function drawMatrixRain(){
+  // Soft fade background for trailing glow
+  ctx.fillStyle = "rgba(0, 0, 0, 0.065)";
+  ctx.fillRect(0, 0, w, h);
+
+  ctx.font = "14px 'JetBrains Mono', monospace";
 
   for (let i = 0; i < cols; i++){
-    for (let j = 0; j < rows; j++){
-      if (Math.random() > 0.55){
-        const x = i * spacing + (Math.random() * 40 - 20);
-        const y = j * spacing + (Math.random() * 40 - 20);
-        const horizontal = Math.random() > 0.5;
-        const len = 60 + Math.random() * 90;
-        const x2 = horizontal ? x + len : x;
-        const y2 = horizontal ? y : y + len;
-        traces.push({ x1: x, y1: y, x2, y2 });
-      }
+    const char = chars.charAt(Math.floor(Math.random() * chars.length));
+    const x = i * 18;
+    const y = ypos[i] * 18;
+
+    // Glowing white-green head glyph
+    ctx.fillStyle = "#ffffff";
+    ctx.shadowColor = "#00ff66";
+    ctx.shadowBlur = 8;
+    ctx.fillText(char, x, y);
+
+    // Green trail glyph behind
+    const prevChar = chars.charAt(Math.floor(Math.random() * chars.length));
+    ctx.fillStyle = "#00ff66";
+    ctx.shadowBlur = 4;
+    ctx.fillText(prevChar, x, y - 18);
+
+    ctx.shadowBlur = 0; // reset shadow for performance
+
+    if (y > h && Math.random() > 0.985){
+      ypos[i] = 0;
+    } else {
+      ypos[i]++;
     }
   }
 
-  const pulseCount = Math.min(22, traces.length);
-  pulses = [];
-  for (let i = 0; i < pulseCount; i++){
-    pulses.push({
-      trace: traces[Math.floor(Math.random() * traces.length)],
-      t: Math.random(),
-      speed: 0.0015 + Math.random() * 0.0035
-    });
+  if (!reduceMotion && !document.hidden){
+    requestAnimationFrame(drawMatrixRain);
   }
-}
-
-function drawCircuit(){
-  ctx.clearRect(0, 0, w, h);
-
-  ctx.strokeStyle = "rgba(0,255,156,0.08)";
-  ctx.lineWidth = 1;
-  ctx.fillStyle = "rgba(0,255,156,0.2)";
-
-  traces.forEach(tr => {
-    ctx.beginPath();
-    ctx.moveTo(tr.x1, tr.y1);
-    ctx.lineTo(tr.x2, tr.y2);
-    ctx.stroke();
-
-    ctx.beginPath();
-    ctx.arc(tr.x1, tr.y1, 1.5, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.beginPath();
-    ctx.arc(tr.x2, tr.y2, 1.5, 0, Math.PI * 2);
-    ctx.fill();
-  });
-
-  pulses.forEach(p => {
-    p.t += p.speed;
-    if (p.t > 1){
-      p.t = 0;
-      p.trace = traces[Math.floor(Math.random() * traces.length)];
-    }
-    const tr = p.trace;
-    if (!tr) return;
-    const x = tr.x1 + (tr.x2 - tr.x1) * p.t;
-    const y = tr.y1 + (tr.y2 - tr.y1) * p.t;
-
-    const grad = ctx.createRadialGradient(x, y, 0, x, y, 9);
-    grad.addColorStop(0, "rgba(0,255,156,0.9)");
-    grad.addColorStop(1, "rgba(0,255,156,0)");
-    ctx.fillStyle = grad;
-    ctx.beginPath();
-    ctx.arc(x, y, 9, 0, Math.PI * 2);
-    ctx.fill();
-
-    ctx.fillStyle = "#00ff9c";
-    ctx.beginPath();
-    ctx.arc(x, y, 2, 0, Math.PI * 2);
-    ctx.fill();
-  });
-
-  if (!reduceMotion && !document.hidden) requestAnimationFrame(drawCircuit);
 }
 
 resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
-drawCircuit();
+drawMatrixRain();
 
 document.addEventListener("visibilitychange", () => {
-  if (!document.hidden && !reduceMotion) requestAnimationFrame(drawCircuit);
+  if (!document.hidden && !reduceMotion){
+    requestAnimationFrame(drawMatrixRain);
+  }
 });
 
-/* ===== STICKY NAV ACTIVE SECTION ===== */
+/* ==========================================================================
+   STICKY NAV ACTIVE SECTION
+   ========================================================================== */
 const navLinks = document.querySelectorAll(".nav-links a");
 const sections = document.querySelectorAll("section[id], header[id], footer[id]");
 
@@ -1349,7 +1324,9 @@ const navObserver = new IntersectionObserver((entries) => {
 
 sections.forEach(sec => navObserver.observe(sec));
 
-/* ===== TIMELINE PROGRESS ===== */
+/* ==========================================================================
+   TIMELINE PROGRESS (NEON LASER FILL)
+   ========================================================================== */
 const timelineFill = document.getElementById("timelineFill");
 const timelineItems = document.querySelectorAll(".timeline-item");
 let maxOffset = 0;
@@ -1372,7 +1349,9 @@ const timelineObserver = new IntersectionObserver((entries) => {
 
 timelineItems.forEach(item => timelineObserver.observe(item));
 
-/* ===== FLOATING HONEY BEE UNBRICK REDIRECT + AUTO CLIPBOARD COPY ===== */
+/* ==========================================================================
+   FLOATING HONEY BEE UNBRICK REDIRECT + AUTO CLIPBOARD COPY
+   ========================================================================== */
 const beeWidget = document.getElementById("honey-bee-widget");
 const targetTelegramUrl = "https://t.me/RealmeGTNeo3discussion/172029";
 const unbrickNoteCommand = "#unbrick_tool";
@@ -1400,7 +1379,9 @@ if (beeWidget) {
   });
 }
 
-/* ===== 1-CLICK CLIPBOARD COPY ===== */
+/* ==========================================================================
+   1-CLICK CLIPBOARD COPY
+   ========================================================================== */
 const toast = document.getElementById("toast-notification");
 const toastMsg = document.getElementById("toastMsg");
 let toastTimer = null;
@@ -1435,7 +1416,9 @@ document.querySelectorAll("[data-copy]").forEach(el => {
   });
 });
 
-/* ===== IMAGE LIGHTBOX ===== */
+/* ==========================================================================
+   IMAGE LIGHTBOX
+   ========================================================================== */
 const modal = document.getElementById("lightbox-modal");
 const imgEl = document.getElementById("lightboxImg");
 const closeBtn = document.getElementById("lightboxClose");
