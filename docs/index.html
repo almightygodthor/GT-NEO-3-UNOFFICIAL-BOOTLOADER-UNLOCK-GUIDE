@@ -1,55 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<title>GT Neo 3 Bootloader Unlock • AMOLED Edition</title>
+<meta charset="UTF-8">
+<title>GT Neo 3 Unofficial Unlock</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Unofficial Bootloader Unlock Guide for Realme GT Neo 3 (Dimensity 8100) — MTK ENG Preloader Exploit, Fastboot Unlock, Driver Setup, IMEI Backup, and Complete Instructions.">
 <meta name="theme-color" content="#000000">
-<meta name="color-scheme" content="dark">
 
-<!-- ANDROID BUGDROID SVG FAVICON -->
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300ffa3'%3E%3Cpath d='M6 18c0 .55.45 1 1 1h1v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h2v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h1c.55 0 1-.45 1-1V8H6v10zM3.5 8C2.67 8 2 8.67 2 9.5v6c0 .83.67 1.5 1.5 1.5S5 16.33 5 15.5v-6C5 8.67 4.33 8 3.5 8zm17 0c-.83 0-1.5.67-1.5 1.5v6c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-6c0-.83-.67-1.5-1.5-1.5zm-4.97-4.84l1.3-1.3c.2-.2.2-.51 0-.71-.2-.2-.51-.2-.71 0l-1.48 1.48C13.85 2.23 12.96 2 12 2c-.96 0-1.86.23-2.66.63L7.85 1.15c-.2-.2-.51-.2-.71 0-.2.2-.2.51 0 .71l1.31 1.31C6.73 4.25 5.54 5.98 5.25 8h13.5c-.29-2.02-1.48-3.75-3.22-4.84zM9 6c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm6 0c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z'/%3E%3C/svg%3E">
-
-<!-- FONTS: OUTFIT + JETBRAINS MONO + PLUS JAKARTA SANS -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 /* ==========================================================================
-   AMOLED DESIGN SYSTEM & ANIMATED CHROMATICS
-   Pure Inky Black (#000000) • Vivid Electric Neon Accents • Smooth Easing
+   TRUE AMOLED DESIGN SYSTEM
+   Pure Pitch Black (#000000) • Vibrant Signal Green • Crisp Glass Surfaces
    ========================================================================== */
 :root {
-  --amoled-black: #000000;
-  --amoled-void: #030508;
-  --amoled-card: #080c12;
-  --amoled-card-hover: #0d131d;
-  --amoled-surface-elevated: #111824;
-
-  /* Pure AMOLED High-Contrast Accents */
-  --neon-green: #00ffa3;
-  --neon-green-glow: rgba(0, 255, 163, 0.4);
-  --android-green: #3DDC84;
-  --android-blue: #00c3ff;
-  --android-amber: #ffb703;
-  --android-red: #ff3366;
-  --android-red-glow: rgba(255, 51, 102, 0.4);
-
-  --border-amoled: rgba(0, 255, 163, 0.18);
-  --border-subtle: rgba(255, 255, 255, 0.08);
-
-  --text-primary: #ffffff;
-  --text-muted: #a0aec0;
-  --text-dim: #607289;
-
-  --font-display: 'Outfit', -apple-system, sans-serif;
-  --font-body: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  --void: #000000;
+  --void-surface: #06090e;
+  --void-card: #090e15;
+  --signal: #00ff9c;
+  --signal-dim: rgba(0, 255, 156, 0.35);
+  --signal-glow: rgba(0, 255, 156, 0.15);
+  --circuit-blue: #00d4ff;
+  --nothing-red: #ff2e4d;
+  --ink: #f0f6fc;
+  --muted: #8fa8c3;
+  --glass: rgba(8, 13, 20, 0.85);
+  --glass-border: rgba(0, 255, 156, 0.22);
+  --font-display: 'Orbitron', sans-serif;
+  --font-body: 'Inter', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
-
-  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 *, *::before, *::after {
@@ -60,909 +41,716 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 84px;
-  background-color: var(--amoled-black);
-  color: var(--text-primary);
+  scroll-padding-top: 90px;
+  background-color: var(--void);
+  color: var(--ink);
   font-family: var(--font-body);
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
 }
 
 body {
-  background-color: var(--amoled-black);
+  background-color: var(--void);
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
 }
 
 ::selection {
-  background: var(--neon-green);
-  color: #000;
+  background: rgba(0, 255, 156, 0.35);
+  color: #fff;
 }
 
 /* ==========================================================================
-   AMOLED DYNAMIC CANVAS & NEON ORBS
+   AMOLED BACKGROUND CIRCUIT & ORBS
    ========================================================================== */
-#amoled-canvas {
+#circuit {
   position: fixed;
   inset: 0;
   width: 100%;
   height: 100%;
   z-index: 0;
-  pointer-events: auto;
-}
-
-.amoled-grid-pattern {
-  position: fixed;
-  inset: 0;
-  background-image: 
-    radial-gradient(rgba(0, 255, 163, 0.08) 1px, transparent 1px),
-    linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
-  background-size: 32px 32px, 128px 128px, 128px 128px;
   pointer-events: none;
-  z-index: 0;
 }
 
-.ambient-neon-glow {
+.orb {
   position: fixed;
   border-radius: 50%;
-  filter: blur(140px);
+  filter: blur(120px);
+  opacity: 0.25;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.22;
-  transition: transform 0.6s ease;
 }
 
-.glow-top-emerald {
-  top: -150px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 800px;
-  height: 480px;
-  background: radial-gradient(circle, var(--neon-green) 0%, rgba(0, 229, 255, 0.2) 50%, transparent 75%);
-  animation: glowPulse 10s ease-in-out infinite alternate;
-}
-
-.glow-bottom-cyan {
-  bottom: -200px;
-  right: -100px;
+.orb-a {
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, var(--android-blue) 0%, transparent 70%);
-  animation: glowPulse 12s ease-in-out infinite alternate-reverse;
+  background: radial-gradient(circle, var(--signal), transparent 70%);
+  top: -160px;
+  left: -160px;
+  animation: floatA 22s ease-in-out infinite alternate;
 }
 
-@keyframes glowPulse {
-  0% { transform: scale(1) translate(0, 0); opacity: 0.18; }
-  100% { transform: scale(1.15) translate(30px, 20px); opacity: 0.28; }
+.orb-b {
+  width: 650px;
+  height: 650px;
+  background: radial-gradient(circle, var(--circuit-blue), transparent 70%);
+  bottom: -180px;
+  right: -180px;
+  animation: floatB 26s ease-in-out infinite alternate;
+}
+
+@keyframes floatA {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(90px, 60px) scale(1.15); }
+}
+
+@keyframes floatB {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(-70px, -80px) scale(1.1); }
+}
+
+.dot-grid {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-image: radial-gradient(rgba(230, 241, 255, 0.06) 1px, transparent 1px);
+  background-size: 26px 26px;
+  pointer-events: none;
 }
 
 /* ==========================================================================
-   STICKY AMOLED NAV WITH NEON INDICATOR
+   STICKY NAV
    ========================================================================== */
 .site-nav {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000;
-  background: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  transition: all 0.3s var(--ease-smooth);
+  z-index: 500;
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(0, 255, 156, 0.18);
+  transition: border-color 0.3s;
 }
 
-.site-nav.scrolled {
-  border-bottom-color: rgba(0, 255, 163, 0.25);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 255, 163, 0.08);
-}
-
-.nav-container {
-  max-width: 1140px;
-  margin: 0 auto;
-  height: 64px;
-  padding: 0 20px;
+.nav-inner {
+  max-width: 1100px;
+  margin: auto;
+  padding: 16px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.brand-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+.nav-brand {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--signal);
+  letter-spacing: 1px;
   text-decoration: none;
-  color: #fff;
+  text-shadow: 0 0 10px rgba(0, 255, 156, 0.4);
 }
 
-.bugdroid-neon {
-  width: 28px;
-  height: 28px;
-  fill: var(--neon-green);
-  filter: drop-shadow(0 0 12px var(--neon-green));
-  transition: transform 0.3s var(--ease-spring);
-}
-
-.brand-wrapper:hover .bugdroid-neon {
-  transform: rotate(18deg) scale(1.15);
-}
-
-.brand-title {
-  font-family: var(--font-display);
-  font-size: 17px;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  letter-spacing: -0.01em;
-}
-
-.neon-chip-badge {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  font-weight: 700;
-  text-transform: uppercase;
-  padding: 3px 8px;
-  border-radius: 9999px;
-  background: rgba(0, 255, 163, 0.12);
-  color: var(--neon-green);
-  border: 1px solid rgba(0, 255, 163, 0.35);
-  box-shadow: 0 0 10px rgba(0, 255, 163, 0.2);
-}
-
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.nav-link {
-  font-family: var(--font-body);
-  font-size: 13.5px;
-  font-weight: 600;
-  color: var(--text-muted);
-  text-decoration: none;
-  padding: 7px 14px;
-  border-radius: 9999px;
-  transition: all 0.2s ease;
-  position: relative;
-}
-
-.nav-link:hover {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.08);
-}
-
-.nav-link.active {
-  color: #000;
-  background: var(--neon-green);
-  font-weight: 700;
-  box-shadow: 0 0 16px rgba(0, 255, 163, 0.5);
-}
-
-.nav-tg-btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: #229ED9;
-  color: #fff;
-  text-decoration: none;
-  padding: 7px 16px;
-  border-radius: 9999px;
-  font-family: var(--font-body);
-  font-size: 13px;
-  font-weight: 600;
-  box-shadow: 0 4px 16px rgba(34, 158, 217, 0.4);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.nav-tg-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(34, 158, 217, 0.6);
-}
-
-/* ==========================================================================
-   MAIN CONTAINER
-   ========================================================================== */
-.main-wrapper {
-  max-width: 1040px;
-  margin: 0 auto;
-  padding: 0 20px 140px;
-  position: relative;
-  z-index: 1;
-}
-
-/* ==========================================================================
-   HERO: ANIMATED AMOLED POWER
-   ========================================================================== */
-.hero-section {
-  padding-top: 130px;
-  padding-bottom: 60px;
-  text-align: center;
-  position: relative;
-}
-
-.hero-neon-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 18px;
-  border-radius: 9999px;
-  background: rgba(0, 255, 163, 0.08);
-  border: 1px solid rgba(0, 255, 163, 0.3);
-  font-family: var(--font-mono);
-  font-size: 11.5px;
-  font-weight: 600;
-  color: var(--neon-green);
-  margin-bottom: 24px;
-  box-shadow: 0 0 20px rgba(0, 255, 163, 0.15);
-  animation: pulsePill 2.5s infinite;
-}
-
-@keyframes pulsePill {
-  0%, 100% { box-shadow: 0 0 20px rgba(0, 255, 163, 0.15); }
-  50% { box-shadow: 0 0 35px rgba(0, 255, 163, 0.35); }
-}
-
-.pulse-led {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--neon-green);
-  box-shadow: 0 0 10px var(--neon-green);
-  animation: ledBlink 1.8s infinite;
-}
-
-@keyframes ledBlink {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.3; transform: scale(0.8); }
-}
-
-.hero-title {
-  font-family: var(--font-display);
-  font-size: clamp(2.4rem, 5.4vw, 4.4rem);
-  font-weight: 800;
-  line-height: 1.08;
-  letter-spacing: -0.035em;
-  color: #fff;
-  margin-bottom: 16px;
-  text-transform: uppercase;
-}
-
-.hero-title-highlight {
-  background: linear-gradient(135deg, #ffffff 20%, var(--neon-green) 70%, var(--android-blue) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 25px rgba(0, 255, 163, 0.3));
-}
-
-.hero-subtitle {
-  font-family: var(--font-mono);
-  font-size: clamp(14px, 2vw, 17px);
-  color: var(--text-muted);
-  max-width: 680px;
-  margin: 0 auto 36px;
-  letter-spacing: 0.02em;
-}
-
-/* ==========================================================================
-   MASTER DOWNLOAD CARD WITH ROTATING CONIC NEON BORDER
-   ========================================================================== */
-.download-card-outer {
-  max-width: 620px;
-  margin: 0 auto;
-  position: relative;
-  border-radius: 26px;
-  padding: 1.5px;
-  background: linear-gradient(135deg, rgba(0, 255, 163, 0.6), rgba(0, 195, 255, 0.4), rgba(255, 255, 255, 0.1));
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 40px rgba(0, 255, 163, 0.15);
-  transition: transform 0.3s var(--ease-spring), box-shadow 0.3s;
-}
-
-.download-card-outer:hover {
-  transform: translateY(-4px) scale(1.01);
-  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.95), 0 0 60px rgba(0, 255, 163, 0.35);
-}
-
-.download-card-inner {
-  background: #04070b;
-  border-radius: 24px;
-  padding: 30px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  align-items: center;
-}
-
-.download-meta-box {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.download-icon-circle {
-  width: 54px;
-  height: 54px;
-  border-radius: 16px;
-  background: rgba(0, 255, 163, 0.12);
-  border: 1px solid rgba(0, 255, 163, 0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 26px;
-  box-shadow: 0 0 20px rgba(0, 255, 163, 0.2);
-}
-
-.download-meta-text {
-  text-align: left;
-}
-
-.dm-title {
-  font-family: var(--font-display);
-  font-size: 17px;
-  font-weight: 700;
-  color: #fff;
-  letter-spacing: 0.02em;
-}
-
-.dm-sub {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--text-dim);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-
-/* Hyper-Animated CTA Button */
-.btn-download-amoled {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 18px 32px;
-  background: linear-gradient(135deg, var(--neon-green) 0%, #00e5ff 100%);
-  color: #000;
-  border-radius: 14px;
-  font-family: var(--font-display);
-  font-size: 17px;
-  font-weight: 800;
-  text-transform: uppercase;
-  text-decoration: none;
-  letter-spacing: 0.03em;
-  box-shadow: 0 8px 30px rgba(0, 255, 163, 0.5);
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
-}
-
-.btn-download-amoled::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -80%;
-  width: 60%;
-  height: 100%;
-  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.6), transparent);
-  transform: skewX(-25deg);
-  transition: left 0.7s ease;
-}
-
-.btn-download-amoled:hover {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 12px 40px rgba(0, 255, 163, 0.7);
-  filter: brightness(1.08);
-}
-
-.btn-download-amoled:hover::after {
-  left: 140%;
-}
-
-.btn-download-amoled:active {
-  transform: translateY(0);
-}
-
-/* ==========================================================================
-   AMOLED CARD SURFACE WITH 3D TILT & SPOTLIGHT
-   ========================================================================== */
-.dev-section {
-  padding: 50px 0;
-  position: relative;
-}
-
-.amoled-card {
-  background: #06090e;
-  border: 1px solid var(--border-subtle);
-  border-radius: 24px;
-  padding: 34px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 25px rgba(0, 255, 163, 0.04);
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.3s var(--ease-spring), border-color 0.3s, box-shadow 0.3s;
-}
-
-.amoled-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(0, 255, 163, 0.35);
-  box-shadow: 0 26px 65px rgba(0, 0, 0, 0.9), 0 0 40px rgba(0, 255, 163, 0.15);
-}
-
-/* Moving Specular Flashlight on Cards */
-.amoled-card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle 350px at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(0, 255, 163, 0.08), transparent 70%);
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-.amoled-card:hover::after {
-  opacity: 1;
-}
-
-.card-header-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 22px;
-  padding-bottom: 14px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-.eyebrow-pill {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--neon-green);
-  background: rgba(0, 255, 163, 0.1);
-  border: 1px solid rgba(0, 255, 163, 0.3);
-  padding: 4px 12px;
-  border-radius: 9999px;
-  box-shadow: 0 0 12px rgba(0, 255, 163, 0.15);
-}
-
-.card-title {
-  font-family: var(--font-display);
-  font-size: clamp(20px, 3.2vw, 26px);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: #fff;
-  margin-bottom: 16px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.req-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 16px 20px;
-  background: #090e15;
-  border: 1px solid rgba(0, 255, 163, 0.18);
-  border-left: 4px solid var(--neon-green);
-  border-radius: 0 12px 12px 0;
-  margin: 12px 0;
-  font-size: 15.5px;
-  font-weight: 600;
-  color: #fff;
-  transition: background 0.2s, transform 0.2s;
-}
-
-.req-item:hover {
-  background: #0d141e;
-  transform: translateX(4px);
-}
-
-.warning-callout {
-  background: rgba(255, 51, 102, 0.08);
-  border: 1px solid rgba(255, 51, 102, 0.3);
-  border-left: 4px solid var(--android-red);
-  border-radius: 0 12px 12px 0;
-  padding: 16px 20px;
-  margin-top: 18px;
-  color: #ffd8df;
-  font-size: 14.5px;
-  line-height: 1.65;
-}
-
-/* ==========================================================================
-   SLOT CHECK BENTO GRID
-   ========================================================================== */
-.slot-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-  margin-top: 22px;
-}
-
-.slot-box {
-  background: #080c13;
-  border-radius: 18px;
-  padding: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
-}
-
-.slot-box:hover {
-  transform: translateY(-3px);
-}
-
-.slot-box-ok {
-  border-color: rgba(0, 255, 163, 0.3);
-}
-
-.slot-box-ok:hover {
-  border-color: var(--neon-green);
-  box-shadow: 0 10px 30px rgba(0, 255, 163, 0.2);
-}
-
-.slot-box-bad {
-  border-color: rgba(255, 51, 102, 0.3);
-}
-
-.slot-box-bad:hover {
-  border-color: var(--android-red);
-  box-shadow: 0 10px 30px rgba(255, 51, 102, 0.2);
-}
-
-.slot-heading {
-  font-family: var(--font-display);
-  font-size: 17px;
-  font-weight: 700;
-}
-
-.slot-heading.ok { color: var(--neon-green); }
-.slot-heading.bad { color: var(--android-red); }
-
-.img-preview-box {
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  cursor: pointer;
-  position: relative;
-  background: #000;
-}
-
-.img-preview-box img {
-  width: 100%;
-  height: auto;
-  display: block;
-  transition: transform 0.4s var(--ease-smooth), filter 0.3s;
-}
-
-.img-preview-box:hover img {
-  transform: scale(1.04);
-  filter: brightness(1.08);
-}
-
-.img-hint-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--neon-green);
-  opacity: 0;
-  transition: opacity 0.2s;
-}
-
-.img-preview-box:hover .img-hint-overlay {
-  opacity: 1;
-}
-
-a.inline-link {
-  color: var(--neon-green);
-  text-decoration: none;
-  font-weight: 600;
-  border-bottom: 1px dashed rgba(0, 255, 163, 0.45);
-  padding-bottom: 2px;
-  transition: all 0.2s;
-}
-
-a.inline-link:hover {
-  color: #fff;
-  border-bottom-color: #fff;
-  text-shadow: 0 0 10px var(--neon-green);
-}
-
-/* ==========================================================================
-   FLASH SEQUENCE TIMELINE (ANIMATED LASER SPINE)
-   ========================================================================== */
-.timeline-list {
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
-  margin-top: 30px;
-  position: relative;
-}
-
-.timeline-list::before {
-  content: "";
-  position: absolute;
-  top: 28px;
-  bottom: 28px;
-  left: 27px;
-  width: 2px;
-  background: rgba(255, 255, 255, 0.08);
-  z-index: 0;
-}
-
-.timeline-laser-fill {
-  position: absolute;
-  top: 28px;
-  left: 27px;
-  width: 2px;
-  height: 0;
-  background: linear-gradient(180deg, var(--neon-green), var(--android-blue));
-  box-shadow: 0 0 14px var(--neon-green);
-  z-index: 0;
-  transition: height 0.4s ease-out;
-}
-
-.step-card {
-  background: #06090e;
-  border: 1px solid var(--border-subtle);
-  border-radius: 22px;
-  padding: 30px;
-  display: grid;
-  grid-template-columns: 56px 1fr;
-  gap: 22px;
-  align-items: flex-start;
-  position: relative;
-  z-index: 1;
-  transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
-}
-
-.step-card:hover {
-  transform: translateX(4px);
-  border-color: rgba(0, 255, 163, 0.35);
-  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(0, 255, 163, 0.1);
-}
-
-.step-card.active-step {
-  border-color: rgba(0, 255, 163, 0.5);
-  box-shadow: 0 0 35px rgba(0, 255, 163, 0.15);
-}
-
-.step-number-node {
-  width: 54px;
-  height: 54px;
-  border-radius: 16px;
-  background: #020406;
-  border: 2px solid rgba(0, 255, 163, 0.28);
-  color: var(--neon-green);
-  font-family: var(--font-display);
-  font-size: 20px;
-  font-weight: 800;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
-  transition: all 0.3s var(--ease-spring);
-}
-
-.step-card:hover .step-number-node,
-.step-card.active-step .step-number-node {
-  border-color: var(--neon-green);
-  box-shadow: 0 0 20px var(--neon-green-glow);
-  transform: scale(1.08);
-}
-
-.step-content {
-  min-width: 0;
-}
-
-.step-heading {
-  font-family: var(--font-display);
-  font-size: 19px;
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 10px;
-}
-
-.step-body-text {
-  color: var(--text-muted);
-  font-size: 15.5px;
-  line-height: 1.65;
-}
-
-/* Copyable Command Chip */
-.cmd-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: #000;
-  border: 1px solid rgba(0, 255, 163, 0.35);
-  padding: 5px 12px;
-  border-radius: 8px;
-  font-family: var(--font-mono);
-  font-size: 13px;
-  color: var(--neon-green);
-  cursor: pointer;
-  user-select: all;
-  box-shadow: 0 0 12px rgba(0, 255, 163, 0.1);
-  transition: all 0.2s;
-}
-
-.cmd-chip:hover {
-  background: rgba(0, 255, 163, 0.15);
-  border-color: var(--neon-green);
-  transform: translateY(-2px);
-  box-shadow: 0 0 20px rgba(0, 255, 163, 0.3);
-}
-
-.cmd-copy-badge {
-  font-size: 9px;
-  font-weight: 700;
-  text-transform: uppercase;
-  background: rgba(0, 255, 163, 0.2);
-  color: var(--neon-green);
-  padding: 2px 6px;
-  border-radius: 4px;
-}
-
-/* Fastboot Terminal Simulation */
-.fastboot-terminal {
-  background: #000000;
-  border: 1px solid rgba(0, 255, 163, 0.25);
-  border-radius: 14px;
-  margin-top: 16px;
-  overflow: hidden;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
-}
-
-.terminal-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 16px;
-  background: rgba(255, 255, 255, 0.02);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-.terminal-dots {
-  display: flex;
-  gap: 6px;
-}
-
-.tdot { width: 9px; height: 9px; border-radius: 50%; }
-.tdot-red { background: #ff5f56; }
-.tdot-yellow { background: #ffbd2e; }
-.tdot-green { background: #27c93f; }
-
-.terminal-title {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--text-dim);
-  letter-spacing: 0.05em;
-}
-
-.terminal-body {
-  padding: 16px 20px;
-}
-
-.terminal-body pre {
-  margin: 0;
-  font-family: var(--font-mono);
-  font-size: 13.5px;
-  color: var(--neon-green);
-  white-space: pre-wrap;
-  text-shadow: 0 0 8px rgba(0, 255, 163, 0.5);
-}
-
-.terminal-body pre::after {
-  content: "▋";
+.blink {
   animation: blinkCursor 1s steps(1) infinite;
-  margin-left: 4px;
-  color: var(--android-blue);
 }
 
 @keyframes blinkCursor {
   50% { opacity: 0; }
 }
 
-.dev-checklist {
-  list-style: none;
-  margin-top: 12px;
+.nav-links {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  gap: 26px;
+  overflow-x: auto;
+  scrollbar-width: none;
 }
 
-.dev-checklist li {
+.nav-links::-webkit-scrollbar { display: none; }
+
+.nav-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  white-space: nowrap;
   position: relative;
-  padding-left: 26px;
-  font-size: 15px;
-  font-weight: 500;
-  color: #fff;
+  padding-bottom: 4px;
+  transition: color 0.2s;
 }
 
-.dev-checklist li::before {
-  content: "✔";
+.nav-links a::after {
+  content: "";
   position: absolute;
   left: 0;
-  color: var(--neon-green);
-  font-weight: 800;
-  text-shadow: 0 0 8px var(--neon-green);
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--signal);
+  box-shadow: 0 0 8px var(--signal);
+  transition: width 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--signal);
+}
+
+.nav-links a.active::after {
+  width: 100%;
 }
 
 /* ==========================================================================
-   CRITICAL WARNING (AMOLED RED GLOW)
+   MAIN LAYOUT & CONTAINERS (ALWAYS 100% VISIBLE)
    ========================================================================== */
-.card-danger {
-  border-color: rgba(255, 51, 102, 0.4);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9), 0 0 35px rgba(255, 51, 102, 0.15);
+.container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 30px 20px 140px;
+  position: relative;
+  z-index: 1;
 }
 
-.card-danger:hover {
-  border-color: var(--android-red);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.95), 0 0 50px rgba(255, 51, 102, 0.3);
+h1, h2, h3 {
+  font-family: var(--font-display);
+  color: var(--ink);
+  margin: 0 0 14px;
+  letter-spacing: 0.02em;
+}
+
+p {
+  line-height: 1.7;
+}
+
+/* Eyebrows */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--circuit-blue);
+  border: 1px solid rgba(0, 212, 255, 0.4);
+  background: rgba(0, 212, 255, 0.08);
+  padding: 5px 14px 5px 26px;
+  border-radius: 20px;
+  position: relative;
+  display: inline-block;
+  margin-bottom: 16px;
+  box-shadow: 0 0 14px rgba(0, 212, 255, 0.15);
+}
+
+.eyebrow::before {
+  content: "";
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--circuit-blue);
+  box-shadow: 0 0 8px var(--circuit-blue);
+  animation: pulseDot 2s infinite;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
 }
 
 .eyebrow-danger {
-  color: var(--android-red);
-  background: rgba(255, 51, 102, 0.12);
-  border-color: rgba(255, 51, 102, 0.4);
-  box-shadow: 0 0 15px rgba(255, 51, 102, 0.25);
+  color: var(--nothing-red);
+  border-color: rgba(255, 46, 77, 0.45);
+  background: rgba(255, 46, 77, 0.08);
+  box-shadow: 0 0 14px rgba(255, 46, 77, 0.2);
 }
 
-.danger-box {
-  background: rgba(255, 51, 102, 0.07);
-  border: 1px solid rgba(255, 51, 102, 0.3);
-  border-radius: 14px;
-  padding: 22px;
-  color: #ffd8dc;
-  font-size: 15px;
-  line-height: 1.85;
+.eyebrow-danger::before {
+  background: var(--nothing-red);
+  box-shadow: 0 0 8px var(--nothing-red);
 }
 
-.danger-box b {
-  color: #fff;
+.section-eyebrow-wrap {
+  text-align: center;
+  margin-bottom: 36px;
 }
 
 /* ==========================================================================
-   FOOTER & CREDITS
+   HERO SECTION
    ========================================================================== */
-.site-footer {
+.hero {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 110px 20px 60px;
+  z-index: 1;
+}
+
+.hero-inner {
+  max-width: 720px;
+  width: 100%;
   text-align: center;
-  padding: 60px 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  color: var(--text-dim);
+  padding: 60px 48px;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 26px;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 0 70px rgba(0, 255, 156, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.hero-inner:hover {
+  box-shadow: 0 0 85px rgba(0, 255, 156, 0.2);
+}
+
+h1 {
+  font-size: clamp(28px, 5vw, 44px);
+  line-height: 1.2;
+  color: var(--signal);
+  text-shadow: 0 0 12px rgba(0, 255, 156, 0.6), 0 0 35px rgba(0, 255, 156, 0.3);
+}
+
+.subtitle {
+  color: var(--muted);
+  margin-top: 10px;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+/* Download Card */
+.download-card {
+  margin-top: 32px;
+  padding: 24px;
+  border: 1px solid var(--glass-border);
+  border-radius: 18px;
+  background: rgba(0, 255, 156, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: center;
+}
+
+.download-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.dc-icon { font-size: 28px; }
+
+.dc-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.dc-label {
+  font-family: var(--font-display);
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: var(--ink);
+}
+
+.dc-sub {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--muted);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.download {
+  display: inline-block;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  padding: 17px 40px;
+  font-size: 17px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: #000;
+  background: var(--signal);
+  border-radius: 12px;
+  text-decoration: none;
+  box-shadow: 0 0 30px var(--signal);
+  transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+}
+
+.download::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.65), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.6s ease;
+}
+
+.download:hover {
+  background: #00ffa3;
+  box-shadow: 0 0 45px var(--signal);
+  transform: scale(1.02);
+}
+
+.download:hover::after { left: 140%; }
+
+.scroll-cue {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 3px;
+}
+
+.scroll-cue-line {
+  width: 2px;
+  height: 36px;
+  background: linear-gradient(var(--signal), transparent);
+  animation: scrollPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 1; }
+}
+
+/* ==========================================================================
+   CARDS & SECTIONS (VISIBLE BY DEFAULT)
+   ========================================================================== */
+section {
+  padding: 45px 0;
+  position: relative;
+}
+
+.card {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 34px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(0, 255, 156, 0.06);
+  transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+  opacity: 1 !important; /* GUARANTEES 100% VISIBILITY */
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(0, 255, 156, 0.45);
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.9), 0 0 35px rgba(0, 255, 156, 0.15);
+}
+
+.req {
+  background: rgba(0, 255, 156, 0.08);
+  border-left: 4px solid var(--signal);
+  padding: 14px 18px;
+  margin: 12px 0;
+  border-radius: 0 10px 10px 0;
+  font-weight: 600;
+  font-size: 16px;
+  color: #fff;
+}
+
+.warning {
+  background: rgba(255, 46, 77, 0.08);
+  border-left: 4px solid var(--nothing-red);
+  padding: 14px 18px;
+  margin: 14px 0;
+  border-radius: 0 10px 10px 0;
+  color: #ffd8df;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.warning-lg {
+  line-height: 1.85;
+  font-size: 15px;
+}
+
+.danger-card {
+  border-color: rgba(255, 46, 77, 0.35);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 46, 77, 0.1);
+}
+
+.danger-card:hover {
+  border-color: var(--nothing-red);
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.9), 0 0 45px rgba(255, 46, 77, 0.25);
+}
+
+a.inline-link {
+  color: var(--signal);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(0, 255, 156, 0.45);
+  padding-bottom: 2px;
+  transition: all 0.2s;
+}
+
+a.inline-link:hover {
+  color: #fff;
+  border-bottom-color: var(--signal);
+  text-shadow: 0 0 10px var(--signal);
+}
+
+/* ==========================================================================
+   SLOT CHECK GRID
+   ========================================================================== */
+.slot-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin: 22px 0;
+}
+
+.slot-box {
+  border-radius: 16px;
+  padding: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-left: 4px solid;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.slot-box:hover {
+  transform: translateY(-2px);
+}
+
+.slot-ok {
+  background: rgba(0, 255, 156, 0.05);
+  border-color: var(--signal);
+  box-shadow: 0 0 20px rgba(0, 255, 156, 0.06);
+}
+
+.slot-ok:hover {
+  box-shadow: 0 0 30px rgba(0, 255, 156, 0.15);
+}
+
+.slot-bad {
+  background: rgba(255, 46, 77, 0.05);
+  border-color: var(--nothing-red);
+  box-shadow: 0 0 20px rgba(255, 46, 77, 0.06);
+}
+
+.slot-bad:hover {
+  box-shadow: 0 0 30px rgba(255, 46, 77, 0.15);
+}
+
+.slot-box h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+/* ==========================================================================
+   IMAGES & LIGHTBOX TRIGGER
+   ========================================================================== */
+img {
+  width: 100%;
+  margin-top: 15px;
+  border-radius: 12px;
+  border: 1px solid var(--glass-border);
+  display: block;
+  cursor: pointer;
+  transition: transform 0.3s, filter 0.3s;
+}
+
+img:hover {
+  transform: scale(1.02);
+  filter: brightness(1.06);
+}
+
+/* ==========================================================================
+   TERMINAL BLOCK & COPY CHIPS
+   ========================================================================== */
+.cmd-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #000;
+  border: 1px solid rgba(0, 255, 156, 0.35);
+  padding: 4px 10px;
+  border-radius: 6px;
   font-family: var(--font-mono);
   font-size: 13px;
+  color: var(--signal);
+  cursor: pointer;
+  user-select: all;
+  transition: all 0.15s;
+}
+
+.cmd-chip:hover {
+  background: rgba(0, 255, 156, 0.15);
+  border-color: var(--signal);
+  box-shadow: 0 0 10px rgba(0, 255, 156, 0.3);
+}
+
+.cmd-chip-badge {
+  font-size: 9px;
+  text-transform: uppercase;
+  background: rgba(0, 255, 156, 0.2);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+.terminal {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 255, 156, 0.28);
+  margin-top: 16px;
+  background: #000000;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
+}
+
+.terminal-bar {
+  display: flex;
+  gap: 6px;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(0, 255, 156, 0.15);
+}
+
+.t-dot { width: 9px; height: 9px; border-radius: 50%; }
+.t-red { background: #ff5f56; }
+.t-yellow { background: #ffbd2e; }
+.t-green { background: #27c93f; }
+
+.terminal-body { padding: 16px 18px; }
+
+.terminal-body pre {
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  color: var(--signal);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  text-shadow: 0 0 8px rgba(0, 255, 156, 0.4);
+}
+
+.terminal-body pre::after {
+  content: "▋";
+  animation: blinkCursor 1s steps(1) infinite;
+  margin-left: 4px;
+}
+
+/* ==========================================================================
+   TIMELINE SEQUENCE
+   ========================================================================== */
+.timeline {
+  position: relative;
+}
+
+.timeline-track,
+.timeline-fill {
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  left: 27px;
+  width: 2px;
+}
+
+.timeline-track {
+  background: rgba(0, 255, 156, 0.15);
+}
+
+.timeline-fill {
+  height: 0;
+  background: linear-gradient(180deg, var(--signal), var(--circuit-blue));
+  box-shadow: 0 0 14px var(--signal);
+  transition: height 0.4s ease-out;
+}
+
+.timeline-item {
+  display: flex;
+  gap: 26px;
+  align-items: flex-start;
+  margin-bottom: 44px;
+  position: relative;
+}
+
+.timeline-item:last-child { margin-bottom: 0; }
+
+.timeline-node {
+  flex: 0 0 56px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #020406;
+  border: 2px solid rgba(0, 255, 156, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--muted);
+  z-index: 2;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+  transition: all 0.3s ease;
+}
+
+.timeline-item.active .timeline-node {
+  border-color: var(--signal);
+  color: var(--signal);
+  background: rgba(0, 255, 156, 0.1);
+  box-shadow: 0 0 25px var(--signal-dim);
+}
+
+.timeline-card {
+  flex: 1;
+  min-width: 0;
+}
+
+.timeline-card ul {
+  margin: 14px 0 0;
+  padding-left: 22px;
   line-height: 1.9;
 }
 
-.footer-author {
-  color: #fff;
-  font-weight: 700;
-  margin-top: 8px;
-}
+.timeline-card li::marker { color: var(--signal); }
 
 /* ==========================================================================
-   ANIMATED FLOATING HONEY BEE WIDGET (UNBRICK HELPER MASCOT)
+   FOOTER
+   ========================================================================== */
+footer {
+  text-align: center;
+  padding: 50px 20px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  border-top: 1px solid rgba(0, 255, 156, 0.15);
+  margin-top: 40px;
+  position: relative;
+  z-index: 1;
+}
+
+footer p { margin: 6px 0; }
+
+/* ==========================================================================
+   FLOATING HONEY BEE WIDGET (UNBRICK HELPER MASCOT)
    ========================================================================== */
 #honey-bee-widget {
   position: fixed;
-  bottom: 28px;
-  right: 28px;
+  bottom: 24px;
+  right: 24px;
   z-index: 99999;
   display: flex;
   align-items: flex-end;
@@ -974,13 +762,12 @@ a.inline-link:hover {
 
 @keyframes beeFloat {
   0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-14px) rotate(4deg); }
+  50% { transform: translateY(-12px) rotate(4deg); }
 }
 
-/* Glowing Speech Bubble */
 .bee-speech-bubble {
   max-width: 230px;
-  background: rgba(14, 18, 24, 0.95);
+  background: rgba(10, 15, 22, 0.95);
   border: 2px solid #FFC107;
   border-radius: 18px 18px 4px 18px;
   padding: 12px 16px;
@@ -992,7 +779,7 @@ a.inline-link:hover {
   box-shadow: 0 10px 35px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 193, 7, 0.35);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  transition: transform 0.25s var(--ease-spring), box-shadow 0.25s;
+  transition: transform 0.25s, box-shadow 0.25s;
 }
 
 #honey-bee-widget:hover .bee-speech-bubble {
@@ -1010,20 +797,18 @@ a.inline-link:hover {
   text-transform: uppercase;
 }
 
-/* The Honey Bee Mascot SVG Container */
 .bee-mascot-avatar {
   width: 64px;
   height: 64px;
   position: relative;
-  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.7));
-  transition: transform 0.25s var(--ease-spring);
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.8));
+  transition: transform 0.25s;
 }
 
 #honey-bee-widget:hover .bee-mascot-avatar {
-  transform: scale(1.2) rotate(-8deg);
+  transform: scale(1.18) rotate(-8deg);
 }
 
-/* Rapid Wing Flutter */
 .bee-wing-left {
   transform-origin: 30px 24px;
   animation: flutterLeft 55ms linear infinite alternate;
@@ -1044,14 +829,43 @@ a.inline-link:hover {
   100% { transform: rotate(35deg) skewY(18deg); }
 }
 
+/* Toast */
+#toast-notification {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(30px);
+  background: #060a10;
+  border: 1px solid var(--signal);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 9999px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.9), 0 0 25px rgba(0, 255, 156, 0.4);
+  z-index: 9999999;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#toast-notification.visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
 /* ==========================================================================
-   IMAGE LIGHTBOX MODAL
+   IMAGE LIGHTBOX
    ========================================================================== */
 #lightbox-modal {
   position: fixed;
   inset: 0;
   z-index: 999999;
-  background: rgba(0, 0, 0, 0.95);
+  background: rgba(0, 0, 0, 0.94);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   display: flex;
@@ -1060,7 +874,7 @@ a.inline-link:hover {
   padding: 30px;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.25s var(--ease-smooth);
+  transition: all 0.25s;
 }
 
 #lightbox-modal.active {
@@ -1075,20 +889,14 @@ a.inline-link:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  transform: scale(0.94);
-  transition: transform 0.25s var(--ease-spring);
-}
-
-#lightbox-modal.active .lightbox-content-box {
-  transform: scale(1);
 }
 
 .lightbox-img-el {
   max-width: 100%;
   max-height: 82vh;
-  border-radius: 16px;
-  border: 1px solid var(--border-amoled);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.95), 0 0 40px rgba(0, 255, 163, 0.2);
+  border-radius: 14px;
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.95), 0 0 35px rgba(0, 255, 156, 0.2);
   object-fit: contain;
 }
 
@@ -1099,8 +907,8 @@ a.inline-link:hover {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: #0d1219;
-  border: 1px solid var(--border-amoled);
+  background: #090e15;
+  border: 1px solid var(--glass-border);
   color: #fff;
   font-size: 18px;
   cursor: pointer;
@@ -1111,88 +919,44 @@ a.inline-link:hover {
 }
 
 .lightbox-close-btn:hover {
-  background: var(--android-red);
+  background: var(--nothing-red);
   transform: rotate(90deg);
 }
 
-/* Floating Notification Toast */
-#toast-notification {
-  position: fixed;
-  bottom: 24px;
-  left: 50%;
-  transform: translateX(-50%) translateY(30px);
-  background: #090e15;
-  border: 1px solid var(--neon-green);
-  color: #fff;
-  padding: 12px 24px;
-  border-radius: 9999px;
-  font-family: var(--font-mono);
-  font-size: 12.5px;
-  font-weight: 700;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), 0 0 30px var(--neon-green-glow);
-  z-index: 9999999;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  opacity: 0;
-  pointer-events: none;
-  transition: all 0.3s var(--ease-spring);
-}
-
-#toast-notification.visible {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-}
-
-/* Smooth Entrance Reveal */
-.reveal-item {
-  opacity: 0;
-  transform: translateY(28px) scale(0.98);
-  transition: opacity 0.75s var(--ease-smooth), transform 0.75s var(--ease-smooth);
-}
-
-.reveal-item.in-view {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-
 /* ==========================================================================
-   RESPONSIVE DESIGN (MOBILE & TABLET)
+   MOBILE RESPONSIVE
    ========================================================================== */
-@media (max-width: 900px) {
-  .slot-grid {
-    grid-template-columns: 1fr;
-  }
+@media (max-width: 900px){
+  .slot-grid { grid-template-columns: 1fr; }
 }
 
-@media (max-width: 768px) {
-  .nav-links {
-    display: none;
-  }
-  .hero-section {
-    padding-top: 100px;
-    padding-bottom: 40px;
-  }
-  .step-card {
-    grid-template-columns: 1fr;
-    gap: 16px;
-    padding: 22px 18px;
-  }
-  .timeline-list::before,
-  .timeline-laser-fill {
-    left: 20px;
-  }
-  .step-number-node {
-    width: 44px;
-    height: 44px;
-    font-size: 17px;
-  }
+@media (max-width: 768px){
+  .hero { padding: 100px 15px 50px; }
+  .hero-inner { padding: 40px 24px; }
+  h1 { font-size: 26px; }
+  .subtitle { font-size: 13px; }
+  .container { padding: 20px 15px 120px; }
+  .card { padding: 22px; margin: 18px 0; }
+  img { margin-top: 12px; }
+  .terminal-body pre { font-size: 13px; }
+  footer { padding: 30px 15px; font-size: 12px; }
+
+  .nav-inner { padding: 14px 16px; }
+  .nav-links { gap: 16px; }
+  .nav-links a { font-size: 11px; }
+
+  .timeline-item { gap: 16px; }
+  .timeline-node { flex-basis: 42px; width: 42px; height: 42px; font-size: 12px; }
+  .timeline-track, .timeline-fill { left: 20px; }
+
+  .download-card { padding: 16px; }
+
   #honey-bee-widget {
-    bottom: 20px;
+    bottom: 16px;
     right: 16px;
   }
   .bee-speech-bubble {
-    max-width: 190px;
+    max-width: 180px;
     font-size: 12px;
     padding: 10px 12px;
   }
@@ -1201,242 +965,168 @@ a.inline-link:hover {
     height: 52px;
   }
 }
+
+@media (max-width: 480px){
+  .eyebrow { font-size: 10px; padding: 4px 10px 4px 22px; letter-spacing: 1.5px; }
+  .nav-brand { font-size: 13px; }
+}
 </style>
 </head>
 
 <body>
 
-<!-- AMOLED DYNAMIC CANVAS & AMBIENT GLOWS -->
-<canvas id="amoled-canvas"></canvas>
-<div class="amoled-grid-pattern" aria-hidden="true"></div>
-<div class="ambient-neon-glow glow-top-emerald" aria-hidden="true"></div>
-<div class="ambient-neon-glow glow-bottom-cyan" aria-hidden="true"></div>
+<!-- ===== BACKGROUND LAYERS (PURE AMOLED) ===== -->
+<canvas id="circuit"></canvas>
+<div class="orb orb-a"></div>
+<div class="orb orb-b"></div>
+<div class="dot-grid"></div>
 
-<!-- ==========================================================================
-     STICKY NAVIGATION BAR
-     ========================================================================== -->
-<header class="site-nav" id="siteNav">
-  <div class="nav-container">
-    <a href="#hero" class="brand-wrapper" title="GT Neo 3 Unlock Portal">
-      <svg class="bugdroid-neon" viewBox="0 0 24 24">
-        <path d="M6 18c0 .55.45 1 1 1h1v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h2v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h1c.55 0 1-.45 1-1V8H6v10zM3.5 8C2.67 8 2 8.67 2 9.5v6c0 .83.67 1.5 1.5 1.5S5 16.33 5 15.5v-6C5 8.67 4.33 8 3.5 8zm17 0c-.83 0-1.5.67-1.5 1.5v6c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-6c0-.83-.67-1.5-1.5-1.5zm-4.97-4.84l1.3-1.3c.2-.2.2-.51 0-.71-.2-.2-.51-.2-.71 0l-1.48 1.48C13.85 2.23 12.96 2 12 2c-.96 0-1.86.23-2.66.63L7.85 1.15c-.2-.2-.51-.2-.71 0-.2.2-.2.51 0 .71l1.31 1.31C6.73 4.25 5.54 5.98 5.25 8h13.5c-.29-2.02-1.48-3.75-3.22-4.84zM9 6c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm6 0c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z"/>
-      </svg>
-      <span class="brand-title">GT Neo 3 <span class="neon-chip-badge">AMOLED DEV</span></span>
-    </a>
+<!-- ===== STICKY NAV ===== -->
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-brand">GT Neo 3<span class="blink">_</span></a>
+    <div class="nav-links">
+      <a href="#requirements" data-section="requirements">Requirements</a>
+      <a href="#slot-check" data-section="slot-check">Slot Check</a>
+      <a href="#steps" data-section="steps">Steps</a>
+      <a href="#warning" data-section="warning">Warning</a>
+      <a href="#credits" data-section="credits">Credits</a>
+    </div>
+  </div>
+</nav>
 
-    <nav class="nav-links">
-      <a href="#requirements" class="nav-link">Requirements</a>
-      <a href="#slot-check" class="nav-link">Slot Check</a>
-      <a href="#steps" class="nav-link">Steps</a>
-      <a href="#warning" class="nav-link">Warning</a>
-      <a href="#credits" class="nav-link">Credits</a>
-    </nav>
+<!-- ===== HERO ===== -->
+<header class="hero" id="hero">
+  <div class="hero-inner glass-panel">
+    <span class="eyebrow">MTK.ENG_PRELOADER_EXPLOIT</span>
+    <h1>GT NEO 3 BOOTLOADER UNLOCK [UNOFFICIAL]</h1>
+    <p class="subtitle">ENG Preloader Exploit • Fastboot Unlock</p>
 
-    <a href="https://t.me/RealmeGTNeo3discussion"
-       target="_blank"
-       rel="noopener"
-       class="nav-tg-btn"
-       title="Telegram Community">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M9.04 15.47l-.39 5.49c.56 0 .81-.24 1.11-.53l2.67-2.56 5.53 4.05c1.01.56 1.73.27 2-.93l3.63-17.01h.01c.32-1.5-.54-2.09-1.52-1.72L1.28 9.1c-1.46.56-1.44 1.38-.25 1.74l5.8 1.81L19.5 6.2c.6-.37 1.15-.17.7.2"/>
-      </svg>
-      <span>Telegram Group</span>
-    </a>
+    <div class="download-card">
+      <div class="download-card-meta">
+        <span class="dc-icon">🗃️</span>
+        <div class="dc-text">
+          <span class="dc-label">UNLOCK PACKAGE</span>
+          <span class="dc-sub">Zip Archive</span>
+        </div>
+      </div>
+      <a href="https://1drv.ms/u/c/66d13348209344ee/IQCtThqYUrY3S4v5YJAoA68PAWxfUghbXtFWr0oTAlrq5TM?e=1abF6F"
+         class="download"
+         target="_blank"
+         rel="noopener">
+        ⬇ DOWNLOAD FILES 🗃️
+      </a>
+    </div>
+  </div>
+
+  <div class="scroll-cue">
+    <span>SCROLL</span>
+    <div class="scroll-cue-line"></div>
   </div>
 </header>
 
-<main class="main-wrapper">
+<div class="container">
 
-  <!-- ==========================================================================
-       HERO SECTION
-       ========================================================================== -->
-  <section class="hero-section" id="hero">
-    <div class="hero-neon-pill reveal-item">
-      <span class="pulse-led"></span>
-      <span>MTK.ENG_PRELOADER_EXPLOIT • FASTBOOT UNLOCK</span>
-    </div>
-
-    <h1 class="hero-title reveal-item">
-      GT NEO 3 BOOTLOADER UNLOCK<br>
-      <span class="hero-title-highlight">[UNOFFICIAL]</span>
-    </h1>
-
-    <p class="hero-subtitle reveal-item">
-      ENG Preloader Exploit • Fastboot Unlock
-    </p>
-
-    <!-- Master Download Package Card -->
-    <div class="download-card-outer reveal-item">
-      <div class="download-card-inner">
-        <div class="download-meta-box">
-          <div class="download-icon-circle">🗃️</div>
-          <div class="download-meta-text">
-            <div class="dm-title">UNLOCK PACKAGE</div>
-            <div class="dm-sub">Zip Archive • Drivers &amp; Scripts Included</div>
-          </div>
-        </div>
-
-        <a href="https://1drv.ms/u/c/66d13348209344ee/IQCtThqYUrY3S4v5YJAoA68PAWxfUghbXtFWr0oTAlrq5TM?e=1abF6F"
-           class="btn-download-amoled"
-           target="_blank"
-           rel="noopener">
-          <span>⬇ DOWNLOAD FILES 🗃️</span>
-        </a>
-      </div>
+  <!-- ===== REQUIREMENTS ===== -->
+  <section id="requirements">
+    <div class="card">
+      <span class="eyebrow">SYSTEM.REQUIREMENTS</span>
+      <h2>⚠️ REQUIRED CONDITIONS</h2>
+      <div class="req">✔ Latest Realme UI 5</div>
+      <div class="req">✔ Active Slot must be SLOT A</div>
+      <div class="warning">Using Slot B or older firmware may brick the device or result in no success.</div>
     </div>
   </section>
 
-  <!-- ==========================================================================
-       SECTION 1: SYSTEM REQUIREMENTS
-       ========================================================================== -->
-  <section id="requirements" class="dev-section">
-    <div class="amoled-card reveal-item">
-      <div class="card-header-bar">
-        <span class="eyebrow-pill">SYSTEM.REQUIREMENTS</span>
-      </div>
-
-      <h2 class="card-title">⚠️ REQUIRED CONDITIONS</h2>
-
-      <div class="req-item">
-        <span style="color: var(--neon-green);">✔</span> Latest Realme UI 5
-      </div>
-      <div class="req-item">
-        <span style="color: var(--neon-green);">✔</span> Active Slot must be SLOT A
-      </div>
-
-      <div class="warning-callout">
-        <strong>⚠️ Warning:</strong> Using Slot B or older firmware may brick the device or result in no success.
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================================================
-       SECTION 2: SLOT CHECK
-       ========================================================================== -->
-  <section id="slot-check" class="dev-section">
-    <div class="amoled-card reveal-item">
-      <div class="card-header-bar">
-        <span class="eyebrow-pill">DEVICE.SLOT_CHECK</span>
-      </div>
-
-      <h2 class="card-title">📱 CHECK ACTIVE SLOT</h2>
-      <p style="color: var(--text-muted); margin-bottom: 16px;">
+  <!-- ===== SLOT CHECK ===== -->
+  <section id="slot-check">
+    <div class="card">
+      <span class="eyebrow">DEVICE.SLOT_CHECK</span>
+      <h2>📱 CHECK ACTIVE SLOT</h2>
+      <p>
         Use
         <a href="https://play.google.com/store/apps/details?id=flar2.devcheck"
            target="_blank"
            rel="noopener"
            class="inline-link">
-          DevCheck App (Install from Play Store)
+           DevCheck App (Install from Play Store)
         </a>
         → System → Active Slot
       </p>
 
       <div class="slot-grid">
-        <!-- SLOT A -->
-        <div class="slot-box slot-box-ok">
-          <h3 class="slot-heading ok">✔ SLOT A (Required)</h3>
-          <div class="img-preview-box" data-lightbox="images/slot_a.jpg" data-caption="DevCheck screenshot showing active slot A">
-            <img src="images/slot_a.jpg" loading="lazy" alt="DevCheck screenshot showing active slot A">
-            <div class="img-hint-overlay">🔍 Click to zoom</div>
-          </div>
+        <div class="slot-box slot-ok">
+          <h3>✔ SLOT A (Required)</h3>
+          <img src="images/slot_a.jpg" loading="lazy" alt="DevCheck screenshot showing active slot A">
         </div>
-
-        <!-- SLOT B -->
-        <div class="slot-box slot-box-bad">
-          <h3 class="slot-heading bad">❌ SLOT B (Do NOT proceed)</h3>
-          <p style="color: var(--text-muted); font-size: 15px; margin: 8px 0;">
-            Local install latest RUI 5 package and check active slot again
-          </p>
-
-          <div style="margin-top: auto; padding-top: 14px; border-top: 1px solid rgba(255, 255, 255, 0.08);">
-            <p style="color: var(--text-muted); font-size: 13.5px; margin-bottom: 6px;">
-              Download RUI 5 OTA packages:
-            </p>
-            <a href="https://docs.google.com/document/u/0/d/1zzIi3n2aXDRSGKynhFYw5_uUAlCFZ5aVYCzIfk0Z-BU/mobilebasic?pli=1"
-               target="_blank"
-               rel="noopener"
-               class="inline-link">
-              ➡ Download latest package available as per your model !
-            </a>
-          </div>
+        <div class="slot-box slot-bad">
+          <h3>❌ SLOT B (Do NOT proceed)</h3>
+          <p style="color: var(--muted); margin-top: 8px;">Local install latest RUI 5 package and check active slot again</p>
         </div>
       </div>
+
+      <p style="margin-top: 14px;">Download RUI 5 OTA packages:<br>
+        <a href="https://docs.google.com/document/u/0/d/1zzIi3n2aXDRSGKynhFYw5_uUAlCFZ5aVYCzIfk0Z-BU/mobilebasic?pli=1"
+           target="_blank"
+           rel="noopener"
+           class="inline-link">
+           ➡ Download latest package available as per your model !
+        </a>
+      </p>
     </div>
   </section>
 
-  <!-- ==========================================================================
-       SECTION 3: FLASH SEQUENCE
-       ========================================================================== -->
-  <section id="steps" class="dev-section">
-    <div style="text-align: center; margin-bottom: 30px;">
-      <span class="eyebrow-pill">FLASH.SEQUENCE</span>
+  <!-- ===== STEPS ===== -->
+  <section id="steps">
+    <div class="section-eyebrow-wrap">
+      <span class="eyebrow">FLASH.SEQUENCE</span>
     </div>
 
-    <div class="timeline-list">
-      <div class="timeline-laser-fill" id="timelineLaser"></div>
+    <div class="timeline">
+      <div class="timeline-track"></div>
+      <div class="timeline-fill" id="timelineFill"></div>
 
       <!-- STEP 1 -->
-      <div class="step-card reveal-item" data-step="1">
-        <div class="step-number-node">01</div>
-        <div class="step-content">
-          <h3 class="step-heading">STEP 1 — INSTALL DRIVERS</h3>
-          <p class="step-body-text">
-            Run <span class="cmd-chip" data-copy="PenumbraDrivers.exe">PenumbraDrivers.exe <span class="cmd-copy-badge">Copy</span></span> → select libusb → install → reboot PC.
-          </p>
+      <div class="timeline-item" data-step="1">
+        <div class="timeline-node">01</div>
+        <div class="card timeline-card">
+          <h2>STEP 1 — INSTALL DRIVERS</h2>
+          <p>Run <span class="cmd-chip" data-copy="PenumbraDrivers.exe">PenumbraDrivers.exe <span class="cmd-chip-badge">Copy</span></span> → select libusb → install → reboot PC.</p>
         </div>
       </div>
 
       <!-- STEP 2 -->
-      <div class="step-card reveal-item" data-step="2">
-        <div class="step-number-node">02</div>
-        <div class="step-content">
-          <h3 class="step-heading">STEP 2 — BACKUP IMEI</h3>
-          <p class="step-body-text">
-            Run <span class="cmd-chip" data-copy="imei-backup.bat">imei-backup.bat <span class="cmd-copy-badge">Copy</span></span> and store backup safely.
-          </p>
+      <div class="timeline-item" data-step="2">
+        <div class="timeline-node">02</div>
+        <div class="card timeline-card">
+          <h2>STEP 2 — BACKUP IMEI</h2>
+          <p>Run <span class="cmd-chip" data-copy="imei-backup.bat">imei-backup.bat <span class="cmd-chip-badge">Copy</span></span> and store backup safely.</p>
         </div>
       </div>
 
       <!-- STEP 3 -->
-      <div class="step-card reveal-item" data-step="3">
-        <div class="step-number-node">03</div>
-        <div class="step-content">
-          <h3 class="step-heading">STEP 3 — FLASH ENG PRELOADER</h3>
-          <p class="step-body-text">
-            Power OFF → run <span class="cmd-chip" data-copy="unlockbt1.bat">unlockbt1.bat <span class="cmd-copy-badge">Copy</span></span> → connect device.
-          </p>
-
-          <div class="img-preview-box" style="margin-top: 14px;" data-lightbox="images/preloader_flash.jpg" data-caption="ENG preloader flashing in progress">
-            <img src="images/preloader_flash.jpg" loading="lazy" alt="ENG preloader flashing in progress">
-            <div class="img-hint-overlay">🔍 Click to zoom</div>
-          </div>
-
-          <div class="fastboot-terminal">
-            <div class="terminal-header">
-              <div class="terminal-dots">
-                <span class="tdot tdot-red"></span>
-                <span class="tdot tdot-yellow"></span>
-                <span class="tdot tdot-green"></span>
-              </div>
-              <span class="terminal-title">FASTBOOT CMD</span>
+      <div class="timeline-item" data-step="3">
+        <div class="timeline-node">03</div>
+        <div class="card timeline-card">
+          <h2>STEP 3 — FLASH ENG PRELOADER</h2>
+          <p>Power OFF → run <span class="cmd-chip" data-copy="unlockbt1.bat">unlockbt1.bat <span class="cmd-chip-badge">Copy</span></span> → connect device.</p>
+          <img src="images/preloader_flash.jpg" loading="lazy" alt="ENG preloader flashing in progress">
+          <div class="terminal">
+            <div class="terminal-bar">
+              <span class="t-dot t-red"></span><span class="t-dot t-yellow"></span><span class="t-dot t-green"></span>
             </div>
-            <div class="terminal-body">
-              <pre>ENG PRELOADER FLASHING COMPLETE</pre>
-            </div>
+            <div class="terminal-body"><pre>ENG PRELOADER FLASHING COMPLETE</pre></div>
           </div>
-
-          <p style="color: var(--android-amber); font-size: 14px; margin-top: 12px; font-weight: 500;">
-            If device boots into recovery mode format and reboot
-          </p>
+          <p style="color: #ffbd2e; margin-top: 14px; font-weight: 500;">If device boots into recovery mode format and reboot</p>
         </div>
       </div>
 
       <!-- STEP 4 -->
-      <div class="step-card reveal-item" data-step="4">
-        <div class="step-number-node">04</div>
-        <div class="step-content">
-          <h3 class="step-heading">STEP 4 — ENABLE THESE OPTIONS TO UNLOCK BOOTLOADER</h3>
-          <ul class="dev-checklist">
+      <div class="timeline-item" data-step="4">
+        <div class="timeline-node">04</div>
+        <div class="card timeline-card">
+          <h2>STEP 4 — ENABLE THESE OPTIONS TO UNLOCK BOOTLOADER</h2>
+          <ul>
             <li>Enable Developer Mode</li>
             <li>Enable USB Debugging</li>
             <li>Enable OEM Unlocking</li>
@@ -1445,52 +1135,30 @@ a.inline-link:hover {
       </div>
 
       <!-- STEP 5 -->
-      <div class="step-card reveal-item" data-step="5">
-        <div class="step-number-node">05</div>
-        <div class="step-content">
-          <h3 class="step-heading">STEP 5 — UNLOCK BOOTLOADER</h3>
-          <p class="step-body-text">
-            Run <span class="cmd-chip" data-copy="unlockbt2.bat">unlockbt2.bat <span class="cmd-copy-badge">Copy</span></span> and confirm on device.
-          </p>
-
-          <div class="img-preview-box" style="margin-top: 14px;" data-lightbox="images/unlock_success.png" data-caption="Bootloader unlock success screen">
-            <img src="images/unlock_success.png" loading="lazy" alt="Bootloader unlock success screen">
-            <div class="img-hint-overlay">🔍 Click to zoom</div>
-          </div>
-
-          <div class="fastboot-terminal">
-            <div class="terminal-header">
-              <div class="terminal-dots">
-                <span class="tdot tdot-red"></span>
-                <span class="tdot tdot-yellow"></span>
-                <span class="tdot tdot-green"></span>
-              </div>
-              <span class="terminal-title">FASTBOOT VERIFY</span>
+      <div class="timeline-item" data-step="5">
+        <div class="timeline-node">05</div>
+        <div class="card timeline-card">
+          <h2>STEP 5 — UNLOCK BOOTLOADER</h2>
+          <p>Run <span class="cmd-chip" data-copy="unlockbt2.bat">unlockbt2.bat <span class="cmd-chip-badge">Copy</span></span> and confirm on device.</p>
+          <img src="images/unlock_success.png" loading="lazy" alt="Bootloader unlock success screen">
+          <div class="terminal">
+            <div class="terminal-bar">
+              <span class="t-dot t-red"></span><span class="t-dot t-yellow"></span><span class="t-dot t-green"></span>
             </div>
-            <div class="terminal-body">
-              <pre>unlocked: yes</pre>
-            </div>
+            <div class="terminal-body"><pre>unlocked: yes</pre></div>
           </div>
         </div>
       </div>
-
     </div>
   </section>
 
-  <!-- ==========================================================================
-       SECTION 4: CRITICAL WARNING
-       ========================================================================== -->
-  <section id="warning" class="dev-section">
-    <div class="amoled-card card-danger reveal-item">
-      <div class="card-header-bar">
-        <span class="eyebrow-pill eyebrow-danger">DANGER.ZONE</span>
-      </div>
+  <!-- ===== CRITICAL WARNING ===== -->
+  <section id="warning">
+    <div class="card danger-card">
+      <span class="eyebrow eyebrow-danger">DANGER.ZONE</span>
+      <h2>🚫 CRITICAL WARNING</h2>
 
-      <h2 class="card-title" style="color: var(--android-red);">
-        🚫 CRITICAL WARNING
-      </h2>
-
-      <div class="danger-box">
+      <div class="warning warning-lg">
         ❗ Don't update or local install offical update packages of stock rom after unlock 🔓<br>
         ❗ Never flash any ROM without verifying the contents.
         <br><br>
@@ -1502,22 +1170,18 @@ a.inline-link:hover {
     </div>
   </section>
 
-</main>
+</div>
 
-<!-- ==========================================================================
-     FOOTER & CREDITS
-     ========================================================================== -->
-<footer id="credits" class="site-footer">
+<!-- ===== FOOTER ===== -->
+<footer id="credits">
   <p>Unofficial Tool • Use at your own risk</p>
   <p>Big thanks to Shomy for Penumbra</p>
   <p>@PjskMeiko for guidance &amp; shared experience</p>
   <p>@Synguyen00 @NorvalBlast @Santhosh — testing &amp; feedback</p>
-  <p class="footer-author">Author : Thundergod_thor</p>
+  <p style="color: #fff; font-weight: 700; margin-top: 10px;">Author : Thundergod_thor</p>
 </footer>
 
-<!-- ==========================================================================
-     FLOATING HONEY BEE MASCOT WIDGET (UNBRICK HELPER)
-     ========================================================================== -->
+<!-- ===== FLOATING HONEY BEE UNBRICK MASCOT ===== -->
 <div id="honey-bee-widget" title="Click me for Unbrick Fix &amp; Telegram Support!">
   <div class="bee-speech-bubble">
     <span>Are you bricked honey ? 🐝 Click on me and i will show the fix !</span>
@@ -1552,355 +1216,260 @@ a.inline-link:hover {
   </div>
 </div>
 
-<!-- ==========================================================================
-     IMAGE LIGHTBOX MODAL
-     ========================================================================== -->
+<!-- ===== IMAGE LIGHTBOX MODAL ===== -->
 <div id="lightbox-modal" role="dialog" aria-modal="true" aria-label="Screenshot Preview">
   <div class="lightbox-content-box">
     <button class="lightbox-close-btn" id="lightboxClose" aria-label="Close">✕</button>
     <img id="lightboxImg" class="lightbox-img-el" src="" alt="Enlarged screenshot">
-    <div id="lightboxCap" style="margin-top: 14px; font-family: var(--font-mono); font-size: 13px; color: var(--text-muted);"></div>
   </div>
 </div>
 
-<!-- FLOATING TOAST -->
+<!-- ===== FLOATING TOAST ===== -->
 <div id="toast-notification" role="status" aria-live="polite">
-  <span style="color: var(--neon-green);">✓</span>
+  <span style="color: var(--signal);">✓</span>
   <span id="toastMsg">COPIED TO CLIPBOARD</span>
 </div>
 
-<!-- ==========================================================================
-     LIVE AMOLED PARTICLES & INTERACTION SCRIPTS
-     ========================================================================== */
 <script>
-(() => {
-  'use strict';
+/* ===== ANIMATED CIRCUIT BACKGROUND ===== */
+const canvas = document.getElementById("circuit");
+const ctx = canvas.getContext("2d");
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* --------------------------------------------------------------------------
-     1. DYNAMIC AMOLED NEON CANVAS (60 FPS FLUID WAVES & PARTICLES)
-     -------------------------------------------------------------------------- */
-  const canvas = document.getElementById('amoled-canvas');
-  const ctx = canvas.getContext('2d');
-  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+let w, h, traces = [], pulses = [];
 
-  let width, height;
-  let particles = [];
-  let shockwaves = [];
-  const count = window.innerWidth < 768 ? 22 : 45;
+function resizeCanvas(){
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
+  buildTraces();
+}
 
-  function resizeCanvas() {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
+function buildTraces(){
+  traces = [];
+  const spacing = 140;
+  const cols = Math.ceil(w / spacing) + 1;
+  const rows = Math.ceil(h / spacing) + 1;
+
+  for (let i = 0; i < cols; i++){
+    for (let j = 0; j < rows; j++){
+      if (Math.random() > 0.55){
+        const x = i * spacing + (Math.random() * 40 - 20);
+        const y = j * spacing + (Math.random() * 40 - 20);
+        const horizontal = Math.random() > 0.5;
+        const len = 60 + Math.random() * 90;
+        const x2 = horizontal ? x + len : x;
+        const y2 = horizontal ? y : y + len;
+        traces.push({ x1: x, y1: y, x2, y2 });
+      }
+    }
   }
 
-  function initParticles() {
-    particles = [];
-    for (let i = 0; i < count; i++) {
-      particles.push({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.45,
-        vy: (Math.random() - 0.5) * 0.45,
-        size: Math.random() * 2 + 1,
-        color: Math.random() > 0.6 ? 'rgba(0, 255, 163, 0.4)' : 'rgba(0, 229, 255, 0.3)'
+  const pulseCount = Math.min(22, traces.length);
+  pulses = [];
+  for (let i = 0; i < pulseCount; i++){
+    pulses.push({
+      trace: traces[Math.floor(Math.random() * traces.length)],
+      t: Math.random(),
+      speed: 0.0015 + Math.random() * 0.0035
+    });
+  }
+}
+
+function drawCircuit(){
+  ctx.clearRect(0, 0, w, h);
+
+  ctx.strokeStyle = "rgba(0,255,156,0.08)";
+  ctx.lineWidth = 1;
+  ctx.fillStyle = "rgba(0,255,156,0.2)";
+
+  traces.forEach(tr => {
+    ctx.beginPath();
+    ctx.moveTo(tr.x1, tr.y1);
+    ctx.lineTo(tr.x2, tr.y2);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.arc(tr.x1, tr.y1, 1.5, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(tr.x2, tr.y2, 1.5, 0, Math.PI * 2);
+    ctx.fill();
+  });
+
+  pulses.forEach(p => {
+    p.t += p.speed;
+    if (p.t > 1){
+      p.t = 0;
+      p.trace = traces[Math.floor(Math.random() * traces.length)];
+    }
+    const tr = p.trace;
+    if (!tr) return;
+    const x = tr.x1 + (tr.x2 - tr.x1) * p.t;
+    const y = tr.y1 + (tr.y2 - tr.y1) * p.t;
+
+    const grad = ctx.createRadialGradient(x, y, 0, x, y, 9);
+    grad.addColorStop(0, "rgba(0,255,156,0.9)");
+    grad.addColorStop(1, "rgba(0,255,156,0)");
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.arc(x, y, 9, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.fillStyle = "#00ff9c";
+    ctx.beginPath();
+    ctx.arc(x, y, 2, 0, Math.PI * 2);
+    ctx.fill();
+  });
+
+  if (!reduceMotion && !document.hidden) requestAnimationFrame(drawCircuit);
+}
+
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
+drawCircuit();
+
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden && !reduceMotion) requestAnimationFrame(drawCircuit);
+});
+
+/* ===== STICKY NAV ACTIVE SECTION ===== */
+const navLinks = document.querySelectorAll(".nav-links a");
+const sections = document.querySelectorAll("section[id], header[id], footer[id]");
+
+const navObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting){
+      const id = entry.target.getAttribute("id");
+      navLinks.forEach(link => {
+        link.classList.toggle("active", link.dataset.section === id);
       });
     }
-  }
-
-  let mouse = { x: -1000, y: -1000, active: false };
-  window.addEventListener('mousemove', (e) => {
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
-    mouse.active = true;
-  }, { passive: true });
-
-  window.addEventListener('mouseleave', () => {
-    mouse.active = false;
   });
+}, { rootMargin: "-45% 0px -45% 0px", threshold: 0 });
 
-  window.addEventListener('click', (e) => {
-    if (shockwaves.length < 4) {
-      shockwaves.push({
-        x: e.clientX,
-        y: e.clientY,
-        radius: 2,
-        maxRadius: 180,
-        alpha: 0.4
-      });
-    }
-  });
+sections.forEach(sec => navObserver.observe(sec));
 
-  function drawCanvas() {
-    ctx.clearRect(0, 0, width, height);
+/* ===== TIMELINE PROGRESS ===== */
+const timelineFill = document.getElementById("timelineFill");
+const timelineItems = document.querySelectorAll(".timeline-item");
+let maxOffset = 0;
 
-    // Shockwaves
-    for (let s = shockwaves.length - 1; s >= 0; s--) {
-      const sw = shockwaves[s];
-      sw.radius += 4;
-      sw.alpha -= 0.008;
-
-      ctx.beginPath();
-      ctx.strokeStyle = `rgba(0, 255, 163, ${Math.max(0, sw.alpha)})`;
-      ctx.lineWidth = 1.4;
-      ctx.arc(sw.x, sw.y, sw.radius, 0, Math.PI * 2);
-      ctx.stroke();
-
-      if (sw.alpha <= 0 || sw.radius >= sw.maxRadius) {
-        shockwaves.splice(s, 1);
-      }
-    }
-
-    // Particles & circuit lines
-    for (let i = 0; i < particles.length; i++) {
-      const p = particles[i];
-      p.x += p.vx;
-      p.y += p.vy;
-
-      if (p.x < 0) p.x = width;
-      else if (p.x > width) p.x = 0;
-      if (p.y < 0) p.y = height;
-      else if (p.y > height) p.y = 0;
-
-      // Mouse repulsive inertia
-      if (mouse.active) {
-        const dx = p.x - mouse.x;
-        const dy = p.y - mouse.y;
-        const dist = Math.hypot(dx, dy);
-        if (dist < 120 && dist > 0) {
-          const force = (120 - dist) / 120;
-          p.x += (dx / dist) * force * 2;
-          p.y += (dy / dist) * force * 2;
-        }
-      }
-
-      ctx.beginPath();
-      ctx.fillStyle = p.color;
-      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-      ctx.fill();
-
-      for (let j = i + 1; j < particles.length; j++) {
-        const p2 = particles[j];
-        const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
-        if (dist < 130) {
-          const alpha = (1 - dist / 130) * 0.12;
-          ctx.beginPath();
-          ctx.strokeStyle = `rgba(0, 255, 163, ${alpha})`;
-          ctx.lineWidth = 0.8;
-          ctx.moveTo(p.x, p.y);
-          ctx.lineTo(p2.x, p2.y);
-          ctx.stroke();
+const timelineObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting){
+      entry.target.classList.add("active");
+      const node = entry.target.querySelector(".timeline-node");
+      if (node) {
+        const offset = entry.target.offsetTop + node.offsetHeight / 2;
+        if (offset > maxOffset){
+          maxOffset = offset;
+          timelineFill.style.height = maxOffset + "px";
         }
       }
     }
+  });
+}, { threshold: 0.35 });
 
-    if (!prefersReduced && !document.hidden) {
-      requestAnimationFrame(drawCanvas);
+timelineItems.forEach(item => timelineObserver.observe(item));
+
+/* ===== FLOATING HONEY BEE UNBRICK REDIRECT + AUTO CLIPBOARD COPY ===== */
+const beeWidget = document.getElementById("honey-bee-widget");
+const targetTelegramUrl = "https://t.me/RealmeGTNeo3discussion/172029";
+const unbrickNoteCommand = "#unbrick_tool";
+
+if (beeWidget) {
+  beeWidget.addEventListener("click", async (e) => {
+    e.preventDefault();
+
+    try {
+      await navigator.clipboard.writeText(unbrickNoteCommand);
+    } catch (err) {
+      const textarea = document.createElement("textarea");
+      textarea.value = unbrickNoteCommand;
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textarea);
     }
-  }
 
-  resizeCanvas();
-  initParticles();
-  window.addEventListener('resize', () => {
-    resizeCanvas();
-    initParticles();
-  }, { passive: true });
-  drawCanvas();
+    showToast("🐝 Copied #unbrick_tool! Opening Telegram unbrick fix...");
 
-  /* --------------------------------------------------------------------------
-     2. CARD FLASHLIGHT SPECULAR GLOW TRACKER
-     -------------------------------------------------------------------------- */
-  document.querySelectorAll('.amoled-card').forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      card.style.setProperty('--mouse-x', `${x}px`);
-      card.style.setProperty('--mouse-y', `${y}px`);
-    });
+    setTimeout(() => {
+      window.open(targetTelegramUrl, "_blank", "noopener,noreferrer");
+    }, 400);
   });
+}
 
-  /* --------------------------------------------------------------------------
-     3. SCROLL-DRIVEN LASER TIMELINE PROGRESS
-     -------------------------------------------------------------------------- */
-  const timelineLaser = document.getElementById('timelineLaser');
-  const stepCards = document.querySelectorAll('.step-card');
+/* ===== 1-CLICK CLIPBOARD COPY ===== */
+const toast = document.getElementById("toast-notification");
+const toastMsg = document.getElementById("toastMsg");
+let toastTimer = null;
 
-  function updateTimelineLaser() {
-    if (!timelineLaser || stepCards.length === 0) return;
-    const firstCard = stepCards[0];
-    const lastCard = stepCards[stepCards.length - 1];
-    const firstTop = firstCard.getBoundingClientRect().top + window.scrollY;
-    const lastTop = lastCard.getBoundingClientRect().top + window.scrollY;
-    const totalDist = lastTop - firstTop;
-
-    const scrollTrigger = window.scrollY + window.innerHeight * 0.65;
-    const progress = Math.max(0, Math.min(1, (scrollTrigger - firstTop) / totalDist));
-    
-    timelineLaser.style.height = `${progress * totalDist}px`;
-
-    // Highlight passed steps
-    stepCards.forEach(card => {
-      const cardRect = card.getBoundingClientRect();
-      if (cardRect.top < window.innerHeight * 0.7) {
-        card.classList.add('active-step');
-      } else {
-        card.classList.remove('active-step');
-      }
-    });
+function showToast(text) {
+  if (toastMsg) toastMsg.textContent = text;
+  if (toast) {
+    toast.classList.add("visible");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove("visible"), 2400);
   }
+}
 
-  window.addEventListener('scroll', updateTimelineLaser, { passive: true });
-  updateTimelineLaser();
+document.querySelectorAll("[data-copy]").forEach(el => {
+  el.addEventListener("click", async (e) => {
+    e.stopPropagation();
+    const val = el.getAttribute("data-copy");
+    if (!val) return;
 
-  /* --------------------------------------------------------------------------
-     4. STAGGERED SCROLL REVEAL OBSERVER
-     -------------------------------------------------------------------------- */
-  const revealElements = document.querySelectorAll('.reveal-item');
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('in-view');
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
-
-  revealElements.forEach(el => revealObserver.observe(el));
-
-  /* --------------------------------------------------------------------------
-     5. FLOATING HONEY BEE UNBRICK REDIRECT + AUTO CLIPBOARD COPY
-     -------------------------------------------------------------------------- */
-  const beeWidget = document.getElementById('honey-bee-widget');
-  const targetTelegramUrl = 'https://t.me/RealmeGTNeo3discussion/172029';
-  const unbrickNoteCommand = '#unbrick_tool';
-
-  if (beeWidget) {
-    beeWidget.addEventListener('click', async (e) => {
-      e.preventDefault();
-
-      try {
-        await navigator.clipboard.writeText(unbrickNoteCommand);
-      } catch (err) {
-        const textarea = document.createElement('textarea');
-        textarea.value = unbrickNoteCommand;
-        document.body.appendChild(textarea);
-        textarea.select();
-        document.execCommand('copy');
-        document.body.removeChild(textarea);
-      }
-
-      showToast('🐝 Copied #unbrick_tool! Opening Telegram unbrick fix...');
-
-      setTimeout(() => {
-        window.open(targetTelegramUrl, '_blank', 'noopener,noreferrer');
-      }, 400);
-    });
-  }
-
-  /* --------------------------------------------------------------------------
-     6. CLIPBOARD COPY FOR SCRIPT & DRIVER NAMES
-     -------------------------------------------------------------------------- */
-  const toast = document.getElementById('toast-notification');
-  const toastMsg = document.getElementById('toastMsg');
-  let toastTimer = null;
-
-  function showToast(text) {
-    if (toastMsg) toastMsg.textContent = text;
-    if (toast) {
-      toast.classList.add('visible');
-      clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => toast.classList.remove('visible'), 2400);
-    }
-  }
-
-  document.querySelectorAll('[data-copy]').forEach(el => {
-    el.addEventListener('click', async (e) => {
-      e.stopPropagation();
-      const val = el.getAttribute('data-copy');
-      if (!val) return;
-
-      try {
-        await navigator.clipboard.writeText(val);
-        showToast(`COPIED: ${val}`);
-      } catch (err) {
-        const t = document.createElement('textarea');
-        t.value = val;
-        document.body.appendChild(t);
-        t.select();
-        document.execCommand('copy');
-        document.body.removeChild(t);
-        showToast(`COPIED: ${val}`);
-      }
-    });
-  });
-
-  /* --------------------------------------------------------------------------
-     7. IMAGE LIGHTBOX MODAL
-     -------------------------------------------------------------------------- */
-  const modal = document.getElementById('lightbox-modal');
-  const imgEl = document.getElementById('lightboxImg');
-  const capEl = document.getElementById('lightboxCap');
-  const closeBtn = document.getElementById('lightboxClose');
-
-  function openLightbox(src, cap) {
-    if (!modal || !imgEl) return;
-    imgEl.src = src;
-    if (capEl) capEl.textContent = cap || '';
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeLightbox() {
-    if (!modal) return;
-    modal.classList.remove('active');
-    document.body.style.overflow = '';
-  }
-
-  document.querySelectorAll('[data-lightbox]').forEach(card => {
-    card.addEventListener('click', () => {
-      openLightbox(card.getAttribute('data-lightbox'), card.getAttribute('data-caption'));
-    });
-  });
-
-  if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
-  if (modal) {
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) closeLightbox();
-    });
-  }
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
-      closeLightbox();
+    try {
+      await navigator.clipboard.writeText(val);
+      showToast(`COPIED: ${val}`);
+    } catch (err) {
+      const t = document.createElement("textarea");
+      t.value = val;
+      document.body.appendChild(t);
+      t.select();
+      document.execCommand("copy");
+      document.body.removeChild(t);
+      showToast(`COPIED: ${val}`);
     }
   });
+});
 
-  /* --------------------------------------------------------------------------
-     8. STICKY NAV SPY & SCROLLED SHADOW
-     -------------------------------------------------------------------------- */
-  const siteNav = document.getElementById('siteNav');
-  window.addEventListener('scroll', () => {
-    if (siteNav) {
-      siteNav.classList.toggle('scrolled', window.scrollY > 20);
-    }
-  }, { passive: true });
+/* ===== IMAGE LIGHTBOX ===== */
+const modal = document.getElementById("lightbox-modal");
+const imgEl = document.getElementById("lightboxImg");
+const closeBtn = document.getElementById("lightboxClose");
 
-  const navLinks = document.querySelectorAll('.nav-link');
-  const sections = document.querySelectorAll('section[id]');
+function openLightbox(src) {
+  if (!modal || !imgEl) return;
+  imgEl.src = src;
+  modal.classList.add("active");
+  document.body.style.overflow = "hidden";
+}
 
-  const navObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const id = entry.target.id;
-        navLinks.forEach(link => {
-          link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
-        });
-      }
-    });
-  }, { rootMargin: '-40% 0px -45% 0px', threshold: 0 });
+function closeLightbox() {
+  if (!modal) return;
+  modal.classList.remove("active");
+  document.body.style.overflow = "";
+}
 
-  sections.forEach(sec => navObserver.observe(sec));
+document.querySelectorAll("img").forEach(img => {
+  img.addEventListener("click", () => {
+    openLightbox(img.src);
+  });
+});
 
-})();
+if (closeBtn) closeBtn.addEventListener("click", closeLightbox);
+if (modal) {
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) closeLightbox();
+  });
+}
+window.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && modal && modal.classList.contains("active")) {
+    closeLightbox();
+  }
+});
 </script>
 
 </body>
